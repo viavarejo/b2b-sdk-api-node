@@ -1,0 +1,29 @@
+{
+  "name": "sdk-api-b2b",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "test-with-coverage": "nyc --reporter=text mocha",
+    "compile": "tsc",
+    "watch": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "typescript": "^4.3.4"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.10",
+    "chai": "^4.3.4",
+    "mocha": "^9.0.1",
+    "nyc": "^15.1.0",
+    "request": "^2.88.2"
+  }
+}
