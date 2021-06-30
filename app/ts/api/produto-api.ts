@@ -18,6 +18,5 @@ export class ProdutoApi {
     queryParams.set("idLojista", idLojista);
     queryParams.set("cnpj", cnpj);
     return await this.requestService.get("/campanhas/" + idCampanha + "/produtos/" + idSKu, queryParams);
-  }
-
+  } 
 }

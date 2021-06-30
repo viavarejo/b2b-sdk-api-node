@@ -8,7 +8,7 @@ describe("Testes de integracao da classe CampanhaApi", () => {
         return api.getCampanhas("2019-08-04", "2100-08-04").then(dto => {
             console.log(dto);
             assert.isNotNull(dto);
-            assert.equal("57.822.975/0001-12", dto.data[0].cnpjContrato);
+            assert.equal(dto.data[0].cnpjContrato, "57.822.975/0001-12");
         });
     });
 
@@ -16,8 +16,8 @@ describe("Testes de integracao da classe CampanhaApi", () => {
         return api.getCampanhas("2019-08-04", null).then(dto => {
             console.log(dto);
             asser.isNull(dto.data);
-            assert.equal("400", dto.error.code);
-            assert.equal("Request inválido\\r\\nA dataFim é um parâmetro obrigatório.", dto.error.message);
+            assert.equal(dto.error.code, "400");
+            assert.equal(dto.error.message, "Request inválido\\r\\nA dataFim é um parâmetro obrigatório.");
         });
     });
 
@@ -25,8 +25,8 @@ describe("Testes de integracao da classe CampanhaApi", () => {
         return api.getFormasPagamento("5940", "57.822.975/0001-12").then(dto => {
             console.log(dto);
             assert.isNotNull(dto);
-            assert.equal(1, dto.data[0].idFormaPagamento);
-            assert.equal("Cartão de Crédito Visa ", dto.data[0].nome);
+            assert.equal(dto.data[0].idFormaPagamento, 1);
+            assert.equal(dto.data[0].nome, "Cartão de Crédito Visa ");
         });
     });
 
