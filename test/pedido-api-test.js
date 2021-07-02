@@ -395,6 +395,67 @@ describe("Testes de integracao da classe PedidoApi", () => {
         });
     });
 
+    it("8-Deveria retornar o PDF da nota fiscal", function () {
+        let pathParams = new Map();
+		pathParams.set("idCompra", "247473612");
+		pathParams.set("idCompraEntrega", "91712686");
+		pathParams.set("formato", "PDF");
+        return pedidoApi.getNotaFiscalPedido(pathParams).catch(pedido => {
+            //assert.isNotNull(pedido);
+           //TODO        
+        });
+    });
+
+    it("9-Deveria retornar erro ao tentar pegar os dados do pedido do parceiro sem passar o id compra", function () {
+        this.timeout(10000);
+        let queryParams = new Map();
+        queryParams.set("request.idCompra", pedidoHelper.idPedido);
+        queryParams.set("request.cnpj", CNPJ);
+        queryParams.set("request.idCampanha", ID_CAMPANHA);
+        queryParams.set("request.idPedidoParceiro", pedidoHelper.idPedidoParceiro);
+        return pedidoApi.getDadosPedidoParceiro(null, queryParams).catch(erro => {
+            assert.isNotNull(erro);
+        });
+    });
+
+    it("10-Deveria retornar erro ao tentar calcular carrinho sem passar o body", function () {
+        this.timeout(10000);
+        return pedidoApi.postCalcularCarrinho(null).catch(erro => {
+            assert.isNotNull(erro);
+        });
+    });
+
+    it("11-Deveria retornar erro ao tentar confirmar o pedido sem passar o body", function () {
+        this.timeout(10000);
+        return pedidoApi.patchPedidosCancelamentoOrConfirmacao(null, pedidoComCartaoHelper.idPedido).catch(erro => {
+            assert.isNotNull(erro);
+        });
+    });
+
+    it("12-Deveria retornar erro ao tentar confirmar o pedido sem passar o id pedido", function () {
+        this.timeout(10000);
+        let dto = new ConfirmacaoReqDTO();
+        dto.idCampanha = ID_CAMPANHA;
+        dto.idPedidoParceiro = pedidoComCartaoHelper.idPedidoParceiro;
+        dto.confirmado = true;
+        return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, null).catch(erro => {
+            assert.isNotNull(erro);
+        });
+    });
+
+    it("13-Deveria retornar erro o tentar download do PDF da nota fiscal sem passar parametros", function () {
+        return pedidoApi.getNotaFiscalPedido(null).catch(erro => {
+            assert.isNotNull(erro);
+        });
+    });
+
+    it("14-Deveria  retornar erro o tentar criar pedido sem body", function () {
+        return pedidoApi.postCriarPedido(null).catch(erro => {
+            assert.isNotNull(erro);
+        });
+    });
+
+
 });//describe
 
 function geraPedidoParceiroId() {
