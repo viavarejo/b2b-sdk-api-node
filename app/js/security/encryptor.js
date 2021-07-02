@@ -1,5 +1,8 @@
 export class Encryptor {
-    encript(inputData) {
-        return "";
+    constructor(chavePublica) {
+        this.chavePublica = chavePublica;
+    }
+    getEncript(inputData) {
+        return inputData;
     }
 }

@@ -21,25 +21,25 @@ export class PedidoApi {
         return await this.requestService.post(path, pedidosCarrinho);
     }
 
-    public async getDadosPedidoParceiro(pathParams: Map<String, String>, queryParams: Map<string, string>): Promise<PedidoParceiroData> {
+    public async getDadosPedidoParceiro(idCompra : string, queryParams: Map<string, string>): Promise<PedidoParceiroData> {
         // verify the required parameter
-        if (pathParams == null) {
-            throw new Error("Missing the required parameter 'pathParams'");
+        if (idCompra == null) {
+            throw new Error("Missing the required parameter 'idCompra'");
         }
         if (queryParams == null) {
             throw new Error("Missing the required parameter 'queryParams'");
         }
         // create path and map variables
-        let path: string = util.format("/pedidos/%s", pathParams.get("idCompra"));
+        let path: string = util.format("/pedidos/%s", idCompra);
 
         return await this.requestService.get(path, queryParams);
     }
 
     public async patchPedidosCancelamentoOrConfirmacao(confirmacaoPedido: ConfirmacaoReqDTO,
-        variableParams: Map<string, string>): Promise<ConfirmacaoDTO> {
+        idCompra: number): Promise<ConfirmacaoDTO> {
         // verify the required parameter
-        if (variableParams == null) {
-            throw new Error("Missing the required parameter 'variableParams'");
+        if (idCompra == null) {
+            throw new Error("Missing the required parameter 'idCompra'");
         }
 
         // verify the required parameter
@@ -49,7 +49,7 @@ export class PedidoApi {
         }
 
         // create path and map variables
-        let path: string = util.format("/pedidos/%s", variableParams.get("idCompra"));
+        let path: string = util.format("/pedidos/%s", idCompra);
 
         return await this.requestService.patch(path, confirmacaoPedido);
     }

@@ -23,32 +23,32 @@ export class PedidoApi {
             return yield this.requestService.post(path, pedidosCarrinho);
         });
     }
-    getDadosPedidoParceiro(pathParams, queryParams) {
+    getDadosPedidoParceiro(idCompra, queryParams) {
         return __awaiter(this, void 0, void 0, function* () {
             // verify the required parameter
-            if (pathParams == null) {
-                throw new Error("Missing the required parameter 'pathParams'");
+            if (idCompra == null) {
+                throw new Error("Missing the required parameter 'idCompra'");
             }
             if (queryParams == null) {
                 throw new Error("Missing the required parameter 'queryParams'");
             }
             // create path and map variables
-            let path = util.format("/pedidos/%s", pathParams.get("idCompra"));
+            let path = util.format("/pedidos/%s", idCompra);
             return yield this.requestService.get(path, queryParams);
         });
     }
-    patchPedidosCancelamentoOrConfirmacao(confirmacaoPedido, variableParams) {
+    patchPedidosCancelamentoOrConfirmacao(confirmacaoPedido, idCompra) {
         return __awaiter(this, void 0, void 0, function* () {
             // verify the required parameter
-            if (variableParams == null) {
-                throw new Error("Missing the required parameter 'variableParams'");
+            if (idCompra == null) {
+                throw new Error("Missing the required parameter 'idCompra'");
             }
             // verify the required parameter
             if (confirmacaoPedido == null) {
                 throw new Error("Missing the required parameter 'confirmacaoPedido' when calling pathPedidosCancelamentoOrConfirmacao");
             }
             // create path and map variables
-            let path = util.format("/pedidos/%s", variableParams.get("idCompra"));
+            let path = util.format("/pedidos/%s", idCompra);
             return yield this.requestService.patch(path, confirmacaoPedido);
         });
     }

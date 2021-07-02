@@ -1,18 +1,26 @@
 export class DadosCartaoHelper {
+    constructor(encryptor, nome, numero, codigoVerificador, anoValidade, mesValidade) {
+        this.encryptor = encryptor;
+        this.nome = nome;
+        this.numero = numero;
+        this.codigoVerificador = codigoVerificador;
+        this.anoValidade = anoValidade;
+        this.mesValidade = mesValidade;
+    }
     getEncryptedName() {
-        return this.encryptor.encript(this.nome);
+        return this.encryptor.getEncript(this.nome);
     }
     getEncryptedNumber() {
-        return this.encryptor.encript(this.numero);
+        return this.encryptor.getEncript(this.numero);
     }
     getEncryptedVerifyCode() {
-        return this.encryptor.encript(this.codigoVerificador);
+        return this.encryptor.getEncript(this.codigoVerificador);
     }
     getEncryptedValidateYear() {
-        return this.encryptor.encript(this.anoValidade);
+        return this.encryptor.getEncript(this.anoValidade);
     }
     getEncryptedValidateMonth() {
-        return this.encryptor.encript(this.mesValidade);
+        return this.encryptor.getEncript(this.mesValidade);
     }
     getEncryptor() {
         return this.encryptor;

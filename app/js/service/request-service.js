@@ -15,6 +15,9 @@ export class RequestService {
         //Cada parceiro tem o seu token
         this.token = "H9xO4+R8GUy+18nUCgPOlg==";
     }
+    //file.env
+    //dotenv lib
+    //deixar arquivo env de exemplo - file.env.example
     getList(path, idSkuList) {
         return __awaiter(this, void 0, void 0, function* () {
             var url = new URL(this.basePath + path);
@@ -41,10 +44,18 @@ export class RequestService {
             return yield this.doPost(url.toString(), body);
         });
     }
-    patch(path, T1) {
+    patch(path, body) {
         return __awaiter(this, void 0, void 0, function* () {
             var url = new URL(this.basePath + path);
-            return yield this.doGet(url.toString());
+            const options = {
+                method: 'PATCH',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': this.token
+                }
+            };
+            return yield this.doFetch(url.toString(), options);
         });
     }
     doGet(url) {

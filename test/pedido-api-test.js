@@ -10,6 +10,11 @@ import { EnderecoEntregaDto } from '../app/js/model/request/endereco-entrega-dto
 import { DestinatarioDto } from '../app/js/model/request/destinatario-dto.js';
 import { EntregaDadosDto } from '../app/js/model/request/entrega-dados-dto.js';
 import { CriacaoPedidoRequest } from '../app/js/model/request/criacao-pedido-request.js';
+import { PagamentoComplementarDto } from '../app/js/model/request/pagamento-complementar-dto.js';
+import { CartaoCreditoDadosDto } from '../app/js/model/request/cartao-credito-dados-dto.js';
+import { CartaoCreditoDadosValidacaoDto } from '../app/js/model/request/cartao-credito-dados-validacao-dto.js';
+import { EnderecoCobrancaDto } from '../app/js/model/request/endereco-cobranca-dto.js';
+import { ConfirmacaoReqDTO } from '../app/js/model/request/confirmacao-req-dto.js';
 
 import { assert } from 'chai';
 
@@ -70,7 +75,6 @@ let pedidoHelper;
 let pedidoComCartaoHelper;
 
 let pedidoApi;
-let dadosCartaoHelper;
 let publicKey;
 
 describe("Testes de integracao da classe PedidoApi", () => {
@@ -87,11 +91,11 @@ describe("Testes de integracao da classe PedidoApi", () => {
 
         // cria instancia de objetos globais
         pedidoApi = new PedidoApi();
-        dadosCartaoHelper = new DadosCartaoHelper(new Encryptor(publicKey), "Jose da Silva", NUMERO_CARTAO_MASTER,
-            CODIGO_VERIFICADOR, ANO_VALIDADE, MES_VALIDADE);
     });
 
-    it("Deveria retornar o Calculo do Carrinho para criacao do Pedido", function () {
+
+    it("1-Deveria retornar o Calculo do Carrinho para criacao do Pedido", function () {
+        this.timeout(10000);
         //mount request object
         let pedidoCarrinho = new PedidoCarrinho();
         let produto = new Produtos();
@@ -105,12 +109,12 @@ describe("Testes de integracao da classe PedidoApi", () => {
         pedidoCarrinho.produtos = new Array();
         pedidoCarrinho.produtos.push(produto);
 
-        console.log("Request:");
-        console.log(pedidoCarrinho);
+        //console.log("Request:");
+        //console.log(pedidoCarrinho);
 
         return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho => {
-            console.log("Response:");
-            console.log(calculoCarrinho);
+            // console.log("Response:");
+            // console.log(calculoCarrinho);
 
             assert.isNotNull(calculoCarrinho);
             assert.isTrue(calculoCarrinho.data.valorFrete > 0.0);
@@ -125,8 +129,8 @@ describe("Testes de integracao da classe PedidoApi", () => {
         });
     });
 
-
-    it("Deveria retornar o Calculo do Carrinho para criacao do Pedido com cartão", function () {
+    it("2-Deveria retornar o Calculo do Carrinho para criacao do Pedido com cartão", function () {
+        this.timeout(10000);
         //mount request object
         let pedidoCarrinho = new PedidoCarrinho();
         let produto = new Produtos();
@@ -137,15 +141,15 @@ describe("Testes de integracao da classe PedidoApi", () => {
         pedidoCarrinho.idCampanha = ID_CAMPANHA;
         pedidoCarrinho.cnpj = CNPJ;
         pedidoCarrinho.cep = CEP;
-        pedidoCarrinho.produtos = new Array();
-        pedidoCarrinho.produtos.push(produto);
+        pedidoCarrinho.produtos = [produto];//new Array();
+        //pedidoCarrinho.produtos.push(produto);
 
-        console.log("Request:");
-        console.log(pedidoCarrinho);
+        //console.log("Request:");
+        //console.log(pedidoCarrinho);
 
         return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho => {
-            console.log("Response:");
-            console.log(calculoCarrinho);
+            //console.log("Response:");
+            //console.log(calculoCarrinho);
 
             assert.isNotNull(calculoCarrinho);
             assert.isTrue(calculoCarrinho.data.valorFrete > 0.0);
@@ -160,7 +164,8 @@ describe("Testes de integracao da classe PedidoApi", () => {
         });
     });
 
-    it("Deveria criar o pedido sem cartão", function () {
+    it("3-Deveria criar o pedido sem cartão", function () {
+        this.timeout(10000);
         // Produto
         let produto = new PedidoProdutoDto();
         produto.idLojista = ID_LOJISTA;
@@ -208,18 +213,185 @@ describe("Testes de integracao da classe PedidoApi", () => {
         pedido.aguardarConfirmacao = true;
         pedido.optantePeloSimples = true;
 
-        console.log("Request:");
-        console.log(pedido);
+        //console.log("Request:");
+        //console.log(pedido);
 
         return pedidoApi.postCriarPedido(pedido).then(criacaoPedidoDTO => {
-            console.log("Request:");
-            console.log(criacaoPedidoDTO);
+            //console.log("Request:");
+            //console.log(criacaoPedidoDTO);
             let expectedValue = pedidoHelper.getTotalPedido().toPrecision(4);
             assert.equal(criacaoPedidoDTO.data.valorTotalPedido, expectedValue);
 
             // complementa dados do Pedido para utilizar nos outros metodos
             pedidoHelper.idPedido = criacaoPedidoDTO.data.codigoPedido;
             pedidoHelper.idPedidoParceiro = criacaoPedidoDTO.data.pedidoParceiro;
+        });
+    });
+
+    it("4-Deveria criar o pedido com cartão", function () {
+        this.timeout(15000);
+        // Produto
+        let produto = new PedidoProdutoDto();
+        produto.idLojista = ID_LOJISTA;
+        produto.codigo = pedidoComCartaoHelper.idSku;
+        produto.quantidade = 1;
+        produto.precoVenda = pedidoComCartaoHelper.precoVenda;
+        let produtos = new Array();
+        produtos.push(produto);
+
+        // endereco Entrega
+        let enderecoEntrega = new EnderecoEntregaDto();
+        enderecoEntrega.cep = CEP;
+        enderecoEntrega.estado = "SP";
+        enderecoEntrega.logradouro = "rua da se";
+        enderecoEntrega.cidade = "São Paulo";
+        enderecoEntrega.numero = 63;
+        enderecoEntrega.referencia = "teste";
+        enderecoEntrega.bairro = "bairro se";
+        enderecoEntrega.complemento = "teste";
+        enderecoEntrega.telefone = "22333333";
+        enderecoEntrega.telefone2 = "22333335";
+        enderecoEntrega.telefone3 = "22333336";
+
+        // destinatario
+        let destinatario = new DestinatarioDto();
+        destinatario.nome = "teste";
+        destinatario.cpfCnpj = CPF_DESTINATARIO;
+        destinatario.email = "teste@teste.com";
+
+        // pedido
+        let pedido = new CriacaoPedidoRequest();
+        pedido.campanha = ID_CAMPANHA;
+        pedido.cnpj = CNPJ;
+        pedido.pedidoParceiro = geraPedidoParceiroId();
+        pedido.valorFrete = pedidoComCartaoHelper.valorFrete;
+        pedido.aguardarConfirmacao = true;
+        pedido.optantePeloSimples = true;
+        pedido.possuiPagtoComplementar = true;
+
+        // pagamentos complementares
+        let pagamentoComplementarDto = new PagamentoComplementarDto();
+        pagamentoComplementarDto.idFormaPagamento = CARTAO_MASTER; // 2-Visa 3-Master
+
+        // dados cartao credito
+        let dadosCartaoHelper = new DadosCartaoHelper(new Encryptor(publicKey), "Jose da Silva", NUMERO_CARTAO_MASTER,
+            CODIGO_VERIFICADOR, ANO_VALIDADE, MES_VALIDADE);
+        let cartaoCreditoDadosDto = new CartaoCreditoDadosDto();
+        cartaoCreditoDadosDto.nome = dadosCartaoHelper.getEncryptedName();
+        cartaoCreditoDadosDto.numero = dadosCartaoHelper.getEncryptedNumber();
+        cartaoCreditoDadosDto.codigoVerificador = dadosCartaoHelper.getEncryptedVerifyCode();
+        cartaoCreditoDadosDto.validadeAno = dadosCartaoHelper.getEncryptedValidateYear();
+        cartaoCreditoDadosDto.validadeMes = dadosCartaoHelper.getEncryptedValidateMonth();
+        cartaoCreditoDadosDto.quantidadeParcelas = 1;
+
+        pagamentoComplementarDto.dadosCartaoCredito = cartaoCreditoDadosDto;
+
+        // dados Cartao Credito Validacao
+        let cartaoCreditoDadosValidacaoDto = new CartaoCreditoDadosValidacaoDto();
+        cartaoCreditoDadosValidacaoDto.nome = dadosCartaoHelper.nome;
+        cartaoCreditoDadosValidacaoDto.numeroMascarado = NUMERO_CARTAO_MASTER_MASCARADO;
+
+        cartaoCreditoDadosValidacaoDto.qtCaracteresCodigoVerificador = "4";
+        cartaoCreditoDadosValidacaoDto.validadeAno = dadosCartaoHelper.anoValidade;
+        cartaoCreditoDadosValidacaoDto.validadeMes = dadosCartaoHelper.mesValidade;
+
+        pagamentoComplementarDto.dadosCartaoCreditoValidacao = cartaoCreditoDadosValidacaoDto;
+
+        // pagamento complementar
+        pagamentoComplementarDto.valorComplementar = 30.0;
+        pagamentoComplementarDto.valorComplementarComJuros = 30.0;
+
+        // dados entrega
+        let dadosEntrega = new EntregaDadosDto();
+        dadosEntrega.valorFrete = pedidoComCartaoHelper.valorFrete;
+
+        // endereco cobranca
+        let enderecoCobranca = new EnderecoCobrancaDto();
+        enderecoCobranca.cep = "01546090";
+        enderecoCobranca.estado = "SP";
+        enderecoCobranca.logradouro = "Rua Rodrigues Bastista";
+        enderecoCobranca.cidade = "São Paulo";
+        enderecoCobranca.numero = 63;
+        enderecoCobranca.referencia = "teste";
+        enderecoCobranca.bairro = "Vila Teodoro";
+        enderecoCobranca.complemento = "teste";
+        enderecoCobranca.telefone = "22333333";
+        enderecoCobranca.telefone2 = "22333335";
+        enderecoCobranca.telefone3 = "22333336";
+
+        pedido.produtos = produtos;
+        pedido.enderecoEntrega = enderecoEntrega;
+        pedido.destinatario = destinatario;
+        pedido.dadosEntrega = dadosEntrega;
+        pedido.enderecoCobranca = enderecoCobranca;
+
+        let pagamentoComplementarDtoList = new Array();
+        pagamentoComplementarDtoList.push(pagamentoComplementarDto);
+        pedido.pagtosComplementares = pagamentoComplementarDtoList;
+
+        pedido.valorTotalPedido = pedidoComCartaoHelper.getTotalPedido();
+        pedido.valorTotalComplementar = 30.0;
+        pedido.valorTotalComplementarComJuros = 30.0;
+
+        return pedidoApi.postCriarPedido(pedido).then(criacaoPedidoDTO => {
+            //console.log("Response:");
+            //console.log(criacaoPedidoDTO);
+
+            let valueExpected = pedidoComCartaoHelper.getTotalPedido();
+            assert.equal(criacaoPedidoDTO.data.valorTotalPedido, valueExpected);
+
+            // complementa dados do Pedido para utilizar nos outros metodos
+            pedidoComCartaoHelper.idPedido = criacaoPedidoDTO.data.codigoPedido;
+            pedidoComCartaoHelper.idPedidoParceiro = criacaoPedidoDTO.data.pedidoParceiro;
+        });
+    });
+
+
+    it("5-Deveria cancelar o pedido", function () {
+        this.timeout(10000);
+        let dto = new ConfirmacaoReqDTO();
+        dto.idCampanha = ID_CAMPANHA;
+        dto.idPedidoParceiro = pedidoHelper.idPedidoParceiro;
+        dto.cancelado = true;
+        dto.confirmado = false;
+        dto.idPedidoMktplc = "1-01";
+        dto.motivoCancelamento = "teste";
+        dto.parceiro = "BANCO INTER";
+
+        //console.log(dto);
+        //console.log(pedidoHelper.idPedido);
+        return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, pedidoHelper.idPedido).then(confirmacaoDto => {
+            //console.log("Response:");
+            //console.log(confirmacaoDto);
+            //console.log("confirmacaoDto.data.pedidoCancelado:");
+            //console.log(confirmacaoDto.data.pedidoCancelado);
+
+            assert.isTrue(confirmacaoDto.data.pedidoCancelado);
+        });
+    });
+
+    it("6-Deveria confirmar o pedido", function () {
+        this.timeout(10000);
+        let dto = new ConfirmacaoReqDTO();
+        dto.idCampanha = ID_CAMPANHA;
+        dto.idPedidoParceiro = pedidoComCartaoHelper.idPedidoParceiro;
+        dto.confirmado = true;
+
+        return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, pedidoComCartaoHelper.idPedido).then(confirmacaoDto => {
+            assert.isTrue(confirmacaoDto.data.pedidoConfirmado);
+        });
+    });
+
+    it("7-Deveria retornar os dados do pedido do parceiro", function () {
+        this.timeout(10000);
+        let queryParams = new Map();
+        queryParams.set("request.idCompra", pedidoHelper.idPedido);
+        queryParams.set("request.cnpj", CNPJ);
+        queryParams.set("request.idCampanha", ID_CAMPANHA);
+        queryParams.set("request.idPedidoParceiro", pedidoHelper.idPedidoParceiro);
+
+        return pedidoApi.getDadosPedidoParceiro(pedidoHelper.idPedido, queryParams).then(pedido => {
+            assert.equal(pedido.data.pedido.codigoPedido, pedidoHelper.idPedido);
         });
     });
 

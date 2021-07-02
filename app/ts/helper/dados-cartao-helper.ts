@@ -1,31 +1,33 @@
 import { Encryptor } from "../security/encryptor.js";
 
 export class DadosCartaoHelper {
-    private encryptor: Encryptor;
-    private nome: string;
-    private numero: string;
-    private codigoVerificador: string;
-    private anoValidade: string;
-    private mesValidade: string;
+
+    constructor(private encryptor: Encryptor,
+        private nome: string,
+        private numero: string,
+        private codigoVerificador: string,
+        private anoValidade: string,
+        private mesValidade: string) {
+    }
 
     public getEncryptedName(): string {
-        return this.encryptor.encript(this.nome);
+        return this.encryptor.getEncript(this.nome);
     }
 
     public getEncryptedNumber(): string {
-        return this.encryptor.encript(this.numero);
+        return this.encryptor.getEncript(this.numero);
     }
 
     public getEncryptedVerifyCode(): string {
-        return this.encryptor.encript(this.codigoVerificador);
+        return this.encryptor.getEncript(this.codigoVerificador);
     }
 
     public getEncryptedValidateYear(): string {
-        return this.encryptor.encript(this.anoValidade);
+        return this.encryptor.getEncript(this.anoValidade);
     }
 
     public getEncryptedValidateMonth(): string {
-        return this.encryptor.encript(this.mesValidade);
+        return this.encryptor.getEncript(this.mesValidade);
     }
 
     public getEncryptor(): Encryptor {

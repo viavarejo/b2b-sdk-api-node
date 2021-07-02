@@ -8,6 +8,10 @@ export class RequestService {
     //Cada parceiro tem o seu token
     private token: string = "H9xO4+R8GUy+18nUCgPOlg==";
 
+    //file.env
+    //dotenv lib
+    //deixar arquivo env de exemplo - file.env.example
+
     public async getList(path: string, idSkuList: number[]): Promise<any> {
         var url = new URL(this.basePath + path);
         let params = new URLSearchParams();
@@ -31,9 +35,17 @@ export class RequestService {
         return await this.doPost(url.toString(), body);
 	}
 
-	public async patch( path:string, T1:any) : Promise<any> {
+	public async patch( path:string, body:any) : Promise<any> {
 		var url = new URL(this.basePath + path);
-        return await this.doGet(url.toString());
+        const options = {
+            method: 'PATCH',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.token
+            }
+        }
+        return await this.doFetch(url.toString(), options);
 	}
 
     private async doGet(url: string) : Promise<any> { 

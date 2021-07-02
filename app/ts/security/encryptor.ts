@@ -1,5 +1,10 @@
-export class Encryptor{
-    public encript( inputData: string): string{
-        return "";
+export class Encryptor {
+
+    constructor(
+        private chavePublica: string
+    ) { }
+
+    public getEncript(inputData: string): string {
+        return inputData;
     }
 }
