@@ -7,8 +7,8 @@ const produtoApi = new ProdutoApi();
 describe("Testes de integracao da classe ProdutoApi", () => {
   it("Deveria retornar um produto", function () {
     return produtoApi.getDadosProduto(15, 5880205).then((dadosProduto) => {
+      console.log("Response:");
       console.log(dadosProduto);
-      let productExpected = "Bola de Natal Santini Christmas 10cm Transparente - 3 Unidades.";
       assert.isNotNull(dadosProduto);
       assert.equal(dadosProduto.data.nome, "Bola de Natal Santini Christmas 10cm Transparente - 3 Unidades.",);
       assert.equal(dadosProduto.data.imagem, "http://imagens.extra.com.br/Control/ArquivoExibir.aspx?IdArquivo=253172122");
@@ -19,6 +19,7 @@ describe("Testes de integracao da classe ProdutoApi", () => {
 
   it("Deveria retornar uma lista de produtos", function () {
     return produtoApi.getListaDadosProdutos(15, [5880205, 5880206]).then((dto) => {
+      console.log("Response:");
       console.log(dto);
       assert.isNotNull(dto);
       assert.equal(dto.data[0].nome, "Bola de Natal Santini Christmas 10cm Transparente - 3 Unidades.");
@@ -30,14 +31,11 @@ describe("Testes de integracao da classe ProdutoApi", () => {
 
   it("Deveria retornar um produto por campanha", function () {
     return produtoApi.getDadosProdutoCampanha("5940", "5880205", "57.822.975/0001-12", "15").then(dto => {
-      //let prod = new ProdutoDTO();        
-      //Object.assign(prod, dto);
-
+      console.log("Response:");
       console.log(dto);
       assert.isNotNull(dto);
       assert.equal(dto.data.nome, "Bola de Natal Santini Christmas 10cm Transparente - 3 Unidades.");
-      assert.equal(dto.data.imagem, "http://imagens.extra.com.br/Control/ArquivoExibir.aspx?IdArquivo=253172122"
-      );
+      assert.equal(dto.data.imagem, "http://imagens.extra.com.br/Control/ArquivoExibir.aspx?IdArquivo=253172122");
       assert.equal(dto.data.categoria, 2868);
       assert.equal(dto.data.valor, 29.9);
       assert.equal(dto.data.valorDe, 29.9);
@@ -46,6 +44,7 @@ describe("Testes de integracao da classe ProdutoApi", () => {
 
   it("Nao deveria encontrar o produto", function () {
     return produtoApi.getDadosProduto(15, 595959).then((dadosProduto) => {
+      console.log("Response:");
       console.log(dadosProduto);
       assert.isNotNull(dadosProduto);
       assert.equal(dadosProduto.error.code, "ProdutoNaoEncontrado");
@@ -55,6 +54,7 @@ describe("Testes de integracao da classe ProdutoApi", () => {
 
   it("Nao deveria retornar uma lista de produtos", function () {
     return produtoApi.getListaDadosProdutos(15, [595959]).then((dadosProduto) => {
+      console.log("Response:");
       console.log(dadosProduto);
       assert.isNotNull(dadosProduto);
       assert.equal(dadosProduto.error.code, "NaoEncontrado");
@@ -63,22 +63,10 @@ describe("Testes de integracao da classe ProdutoApi", () => {
   });
 
   it("Deveria lançar exception", async () => {
-    /*try {
-      produtoApi.getDadosProdutoCampanha("5940", "11111", "11111", "11111");
-    } catch (e) {
-      assert(e.message.includes('Erro API:'))
-    }*/
-
-    let expectedError = new Error('Erro API: Bad Request');
-
-    // assert.throws(() => {
-    //   produtoApi.getDadosProdutoCampanha("5940", "11111", "11111", "11111").then()
-    //produtoApi.geTesteError("5940", "11111", "11111", "11111")
-    //throw new Error("Erro API: Bad Request") 
-    // }, Error, 'Erro API: Bad Request');
     await produtoApi.getDadosProdutoCampanha("5940", "11111", "11111", "11111").catch(error => {
+      console.log("Response:");
       console.log(error.message);
-      assert.isTrue("Erro API: Bad Request" == error.message);
+      assert.equal(error.message, "Erro API: Bad Request");
     });
 
   });
