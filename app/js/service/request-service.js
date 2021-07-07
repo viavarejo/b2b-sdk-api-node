@@ -8,16 +8,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import fetch from "node-fetch";
-import { Hosts } from "../model/common/hosts.js";
+import { config } from "dotenv";
 export class RequestService {
     constructor() {
-        this.basePath = Hosts.EXTRA;
-        //Cada parceiro tem o seu token
-        this.token = "H9xO4+R8GUy+18nUCgPOlg==";
+        this.loadEnv();
     }
-    //file.env
-    //dotenv lib
-    //deixar arquivo env de exemplo - file.env.example
+    loadEnv() {
+        config();
+        //console.log(process.env.USERDOMAIN);
+        //console.log(process.env.HOST_BANDEIRA);
+        this.basePath = process.env.HOST_BANDEIRA;
+        this.token = process.env.TOKEN_PARCEIRO;
+    }
     getList(path, idSkuList) {
         return __awaiter(this, void 0, void 0, function* () {
             var url = new URL(this.basePath + path);
@@ -87,7 +89,7 @@ export class RequestService {
             if (resposta.ok) {
                 return resposta.json();
             }
-            console.log('Erro API: ' + resposta.statusText);
+            //console.log('Erro API: ' + resposta.statusText);        
             throw new Error('Erro API: ' + resposta.statusText);
         });
     }

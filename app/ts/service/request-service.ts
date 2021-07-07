@@ -1,18 +1,27 @@
 import fetch from "node-fetch";
 import { Hosts } from "../model/common/hosts.js";
+import { config } from "dotenv";
 
 export class RequestService {
 
-    private basePath: string = Hosts.EXTRA;
+    private basePath: string;// = Hosts.EXTRA;
     
-    //Cada parceiro tem o seu token
-    private token: string = "H9xO4+R8GUy+18nUCgPOlg==";
+    private token: string; //"H9xO4+R8GUy+18nUCgPOlg==";
 
-    //file.env
-    //dotenv lib
-    //deixar arquivo env de exemplo - file.env.example
+    constructor(){
+       this.loadEnv();
+    }
+
+    private loadEnv():void {
+        config();
+        //console.log(process.env.USERDOMAIN);
+        //console.log(process.env.HOST_BANDEIRA);
+        this.basePath = process.env.HOST_BANDEIRA;   
+        this.token = process.env.TOKEN_PARCEIRO;
+    }
 
     public async getList(path: string, idSkuList: number[]): Promise<any> {
+        
         var url = new URL(this.basePath + path);
         let params = new URLSearchParams();
         for (let i in idSkuList) {
@@ -36,7 +45,8 @@ export class RequestService {
 	}
 
 	public async patch( path:string, body:any) : Promise<any> {
-		var url = new URL(this.basePath + path);
+		
+        var url = new URL(this.basePath + path);
         const options = {
             method: 'PATCH',
             body: JSON.stringify(body),
@@ -74,7 +84,7 @@ export class RequestService {
         if (resposta.ok) {
             return resposta.json();
         }
-        console.log('Erro API: ' + resposta.statusText);        
+        //console.log('Erro API: ' + resposta.statusText);        
         throw new Error('Erro API: ' + resposta.statusText);
     }
 
@@ -85,5 +95,7 @@ export class RequestService {
         }
         return params.toString();
     }
+
+    
 
 }

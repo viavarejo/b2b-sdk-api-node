@@ -109,8 +109,8 @@ describe("Testes de integracao da classe PedidoApi", () => {
         pedidoCarrinho.produtos = new Array();
         pedidoCarrinho.produtos.push(produto);
 
-        //console.log("Request:");
-        //console.log(pedidoCarrinho);
+        console.log("Request:");
+        console.log(pedidoCarrinho);
 
         return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho => {
             console.log("Response:");
@@ -399,6 +399,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
 		pathParams.set("idCompra", "247473612");
 		pathParams.set("idCompraEntrega", "91712686");
 		pathParams.set("formato", "PDF");
+        //return pedidoApi.getNotaFiscalPedido(pathParams).then(pedido => {
         return pedidoApi.getNotaFiscalPedido(pathParams).catch(pedido => {
             //console.log("Response:");
             //console.log(pedido);

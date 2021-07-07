@@ -9,18 +9,32 @@
   },
   "scripts": {
     "test": "mocha",
-    "test-with-coverage": "nyc --reporter=text mocha",
+    "test-with-coverage": "nyc --reporter=text mocha --require ./test/require-all app/**/*.test.js",
     "compile": "tsc",
     "watch": "tsc -w"
+  },
+  "nyc": {
+    "include": [
+      "app/**/*.js"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/test/**",
+      "**/coverage/**"
+    ],
+    "all": true
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "node-fetch": "^2.6.1",
+    "node-rsa": "^1.1.1",
     "typescript": "^4.3.4"
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.10",
+    "@types/node-rsa": "^1.1.0",
     "chai": "^4.3.4",
     "mocha": "^9.0.1",
     "nyc": "^15.1.0",
