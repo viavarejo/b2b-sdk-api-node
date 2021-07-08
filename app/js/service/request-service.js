@@ -86,11 +86,10 @@ export class RequestService {
     doFetch(url, options) {
         return __awaiter(this, void 0, void 0, function* () {
             const resposta = yield fetch(url, options);
-            if (resposta.ok) {
-                return resposta.json();
-            }
-            //console.log('Erro API: ' + resposta.statusText);        
-            throw new Error('Erro API: ' + resposta.statusText);
+            //if (resposta.ok) {
+            return resposta.json();
+            //} 
+            //throw new Error(`Erro API: ${resposta.statusText}`); 
         });
     }
     buildParams(toConvert) {

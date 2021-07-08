@@ -34,10 +34,10 @@ const CNPJ = "57.822.975/0001-12";
 const ID_CAMPANHA = 5940;
 
 /** Atributo do Id Sku para criacao do primeiro Pedido. */
-const ID_SKU_CRIACAO_PEDIDO = 8935731;
+const ID_SKU_CRIACAO_PEDIDO = 8860;//8935731;
 
 /** Atributo do Id Sku para criacao do segundo Pedido com cartao de credito. */
-const ID_SKU_CRIACAO_PEDIDO_COM_CARTAO = 9342200;
+const ID_SKU_CRIACAO_PEDIDO_COM_CARTAO = 55010765; //9342200;
 
 /** Tipo de Forma de pagamento cartão Visa. */
 //const  CARTAO_VISA = 2;
@@ -109,12 +109,15 @@ describe("Testes de integracao da classe PedidoApi", () => {
         pedidoCarrinho.produtos = new Array();
         pedidoCarrinho.produtos.push(produto);
 
-        console.log("Request:");
-        console.log(pedidoCarrinho);
+        //console.log("Request:");
+        //console.log(pedidoCarrinho);
 
         return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho => {
-            console.log("Response:");
-            console.log(calculoCarrinho);
+            if (calculoCarrinho.error.code != null){
+                console.log("Response:");
+                console.log(calculoCarrinho);
+                throw new Error('Erro API'); 
+            }
             assert.isNotNull(calculoCarrinho);
             assert.isTrue(calculoCarrinho.data.valorFrete > 0.0);
             assert.isTrue(calculoCarrinho.data.valorTotaldoPedido > 0.0);
@@ -147,8 +150,11 @@ describe("Testes de integracao da classe PedidoApi", () => {
         //console.log(pedidoCarrinho);
 
         return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho => {
-            console.log("Response:");
-            console.log(calculoCarrinho);
+            if (calculoCarrinho.error.code != null){
+                console.log("Response:");
+                console.log(calculoCarrinho);
+                throw new Error('Erro API'); 
+            }
             assert.isNotNull(calculoCarrinho);
             assert.isTrue(calculoCarrinho.data.valorFrete > 0.0);
             assert.isTrue(calculoCarrinho.data.valorTotaldoPedido > 0.0);
@@ -163,7 +169,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
     });
 
     it("3-Deveria criar o pedido sem cartão", function () {
-        this.timeout(10000);
+        this.timeout(15000);
         // Produto
         let produto = new PedidoProdutoDto();
         produto.idLojista = ID_LOJISTA;
@@ -215,10 +221,13 @@ describe("Testes de integracao da classe PedidoApi", () => {
         //console.log(pedido);
 
         return pedidoApi.postCriarPedido(pedido).then(criacaoPedidoDTO => {
-            console.log("Request:");
-            console.log(criacaoPedidoDTO);
-            let expectedValue = pedidoHelper.getTotalPedido().toPrecision(4);
-            assert.equal(criacaoPedidoDTO.data.valorTotalPedido, expectedValue);
+            if (criacaoPedidoDTO.error.code != null){
+                console.log("Request:");
+                console.log(criacaoPedidoDTO);
+                throw new Error('Erro API'); 
+            }
+            let expectedValue = pedidoHelper.getTotalPedido();
+            assert.equal(Math.trunc(criacaoPedidoDTO.data.valorTotalPedido), Math.trunc(expectedValue));
 
             // complementa dados do Pedido para utilizar nos outros metodos
             pedidoHelper.idPedido = criacaoPedidoDTO.data.codigoPedido;
@@ -281,7 +290,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
         cartaoCreditoDadosDto.validadeAno = dadosCartaoHelper.getEncryptedValidateYear();
         cartaoCreditoDadosDto.validadeMes = dadosCartaoHelper.getEncryptedValidateMonth();
         cartaoCreditoDadosDto.quantidadeParcelas = 1;
-
+console.log(cartaoCreditoDadosDto);
         pagamentoComplementarDto.dadosCartaoCredito = cartaoCreditoDadosDto;
 
         // dados Cartao Credito Validacao
@@ -331,15 +340,24 @@ describe("Testes de integracao da classe PedidoApi", () => {
         pedido.valorTotalComplementar = 30.0;
         pedido.valorTotalComplementarComJuros = 30.0;
 
+        //console.log("Request:");
+        //console.log(pedido);
+
         return pedidoApi.postCriarPedido(pedido).then(criacaoPedidoDTO => {
-            console.log("Response:");
-            console.log(criacaoPedidoDTO);
+            //console.log("Response criacaoPedidoDTO:");
+            //console.log(criacaoPedidoDTO);
+            if (criacaoPedidoDTO.error.code != null){
+                console.log("Response:");
+                console.log(criacaoPedidoDTO);
+                throw new Error('Erro API'); 
+            }
             let valueExpected = pedidoComCartaoHelper.getTotalPedido();
-            assert.equal(criacaoPedidoDTO.data.valorTotalPedido, valueExpected);
+            assert.equal(Math.trunc(criacaoPedidoDTO.data.valorTotalPedido), Math.trunc(valueExpected));
 
             // complementa dados do Pedido para utilizar nos outros metodos
             pedidoComCartaoHelper.idPedido = criacaoPedidoDTO.data.codigoPedido;
             pedidoComCartaoHelper.idPedidoParceiro = criacaoPedidoDTO.data.pedidoParceiro;
+            console.log(pedidoComCartaoHelper);
         });
     });
 
@@ -355,12 +373,15 @@ describe("Testes de integracao da classe PedidoApi", () => {
         dto.motivoCancelamento = "teste";
         dto.parceiro = "BANCO INTER";
 
-        //console.log(dto);
+        console.log(dto);
         //console.log(pedidoHelper.idPedido);
 
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, pedidoHelper.idPedido).then(confirmacaoDto => {
-            console.log("Response:");
-            console.log(confirmacaoDto);
+            if (confirmacaoDto.error.code != null){
+                console.log("Response:");
+                console.log(confirmacaoDto);
+                throw new Error('Erro API'); 
+            }
             assert.isTrue(confirmacaoDto.data.pedidoCancelado);
         });
     });
@@ -371,10 +392,14 @@ describe("Testes de integracao da classe PedidoApi", () => {
         dto.idCampanha = ID_CAMPANHA;
         dto.idPedidoParceiro = pedidoComCartaoHelper.idPedidoParceiro;
         dto.confirmado = true;
-
+        console.log("Request:");
+        console.log(dto);
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, pedidoComCartaoHelper.idPedido).then(confirmacaoDto => {
-            console.log("Response:");
-            console.log(confirmacaoDto);
+            if (confirmacaoDto.error.code != null){
+                console.log("Response:");
+                console.log(confirmacaoDto);
+                throw new Error('Erro API'); 
+            }
             assert.isTrue(confirmacaoDto.data.pedidoConfirmado);
         });
     });
@@ -388,8 +413,11 @@ describe("Testes de integracao da classe PedidoApi", () => {
         queryParams.set("request.idPedidoParceiro", pedidoHelper.idPedidoParceiro);
 
         return pedidoApi.getDadosPedidoParceiro(pedidoHelper.idPedido, queryParams).then(pedido => {
-            console.log("Response:");
-            console.log(pedido);
+            if (pedido.error.code != null){
+                console.log("Response:");
+                console.log(pedido);
+                throw new Error('Erro API'); 
+            }
             assert.equal(pedido.data.pedido.codigoPedido, pedidoHelper.idPedido);
         });
     });

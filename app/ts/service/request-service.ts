@@ -81,11 +81,10 @@ export class RequestService {
 
     private async doFetch(url: string, options: object): Promise<any>{
         const resposta = await fetch(url, options);
-        if (resposta.ok) {
+        //if (resposta.ok) {
             return resposta.json();
-        }
-        //console.log('Erro API: ' + resposta.statusText);        
-        throw new Error('Erro API: ' + resposta.statusText);
+        //} 
+        //throw new Error(`Erro API: ${resposta.statusText}`); 
     }
 
     private buildParams(toConvert: Map<string, string>): string {
