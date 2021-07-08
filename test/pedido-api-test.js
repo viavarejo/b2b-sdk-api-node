@@ -34,10 +34,10 @@ const CNPJ = "57.822.975/0001-12";
 const ID_CAMPANHA = 5940;
 
 /** Atributo do Id Sku para criacao do primeiro Pedido. */
-const ID_SKU_CRIACAO_PEDIDO = 8860;//8935731;
+const ID_SKU_CRIACAO_PEDIDO = 8935731;
 
 /** Atributo do Id Sku para criacao do segundo Pedido com cartao de credito. */
-const ID_SKU_CRIACAO_PEDIDO_COM_CARTAO = 55010765; //9342200;
+const ID_SKU_CRIACAO_PEDIDO_COM_CARTAO = 9342200;
 
 /** Tipo de Forma de pagamento cartão Visa. */
 //const  CARTAO_VISA = 2;
@@ -182,7 +182,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
 
         // endereco Entrega
         let enderecoEntrega = new EnderecoEntregaDto();
-        enderecoEntrega.cep = "01525-000";
+        enderecoEntrega.cep = "01525000";
         enderecoEntrega.estado = "SP";
         enderecoEntrega.logradouro = "rua da se";
         enderecoEntrega.cidade = "São Paulo";
@@ -290,7 +290,6 @@ describe("Testes de integracao da classe PedidoApi", () => {
         cartaoCreditoDadosDto.validadeAno = dadosCartaoHelper.getEncryptedValidateYear();
         cartaoCreditoDadosDto.validadeMes = dadosCartaoHelper.getEncryptedValidateMonth();
         cartaoCreditoDadosDto.quantidadeParcelas = 1;
-console.log(cartaoCreditoDadosDto);
         pagamentoComplementarDto.dadosCartaoCredito = cartaoCreditoDadosDto;
 
         // dados Cartao Credito Validacao
@@ -357,7 +356,7 @@ console.log(cartaoCreditoDadosDto);
             // complementa dados do Pedido para utilizar nos outros metodos
             pedidoComCartaoHelper.idPedido = criacaoPedidoDTO.data.codigoPedido;
             pedidoComCartaoHelper.idPedidoParceiro = criacaoPedidoDTO.data.pedidoParceiro;
-            console.log(pedidoComCartaoHelper);
+            //console.log(pedidoComCartaoHelper);
         });
     });
 
@@ -373,8 +372,8 @@ console.log(cartaoCreditoDadosDto);
         dto.motivoCancelamento = "teste";
         dto.parceiro = "BANCO INTER";
 
-        console.log(dto);
-        //console.log(pedidoHelper.idPedido);
+        //console.log(dto);
+        //console.log(pedidoHelper);
 
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, pedidoHelper.idPedido).then(confirmacaoDto => {
             if (confirmacaoDto.error.code != null){
@@ -392,8 +391,8 @@ console.log(cartaoCreditoDadosDto);
         dto.idCampanha = ID_CAMPANHA;
         dto.idPedidoParceiro = pedidoComCartaoHelper.idPedidoParceiro;
         dto.confirmado = true;
-        console.log("Request:");
-        console.log(dto);
+        //console.log("Request:");
+        //console.log(dto);
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, pedidoComCartaoHelper.idPedido).then(confirmacaoDto => {
             if (confirmacaoDto.error.code != null){
                 console.log("Response:");
