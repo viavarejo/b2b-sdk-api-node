@@ -40,7 +40,7 @@ Instalar:
  A estrutura de pastas do projeto é composto pela pasta raiz [app] e dentro dela as pastas [js] e [ts], os arquivos javascript da pasta [js] é o resultado da compilação das classes Typescript da [ts].
  Também possui a pasta [test] onde encontra-se os arquivos de teste das api, e servirão de exemplo de como consumir as api's.
 
-## Classe de APIs Disponíveis
+## Classe de representação de cada path das APIs disponíveis
 
 Na pasta [app / ts / api] contem as classes:
 * CampanhaApi
@@ -51,9 +51,15 @@ Na pasta [app / ts / api] contem as classes:
 
 Estas classes compõe a camada de acesso para os serviços disponibilizados pelo B2B, alguns exemplos de como utiliza-las estão disponíveis.
 
+## Classes DTO e Helpers
+
 Na pasta [app / ts / model] e [app / ts / helper] estão as classes DTO e Helper que auxiliam nos requests e responses das chamadas da api.
 
+## Classe para criptografia
+
 Na pasta [app / ts / security]  está a classe de criptografia para os dados do cartão de crédito, eles devem ser criptografados pelo parceiro. A encriptação deverá ser do tipo RSA2048 (RSA2048 PKCS1-UTF8) e deverá utilizar uma chave pública fornecida pela Via Varejo, no Swagger, GET /seguranca/chaves.
+
+## Classe para comunicação com Api's
 
 Na pasta [app / ts / service] está a classe de serviço responsável por fazer a comunicação com a Api.
 
