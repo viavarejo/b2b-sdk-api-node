@@ -53,7 +53,7 @@ Estas classes compõe a camada de acesso para os serviços disponibilizados pelo
 
 Na pasta [app / ts / model] e [app / ts / helper] estão as classes DTO e Helper que auxiliam nos requests e responses das chamadas da api.
 
-Na pasta [app / ts / security]  está a classe de criptografia para os dados do cartão de crédito.
+Na pasta [app / ts / security]  está a classe de criptografia para os dados do cartão de crédito, eles devem ser criptografados pelo parceiro. A encriptação deverá ser do tipo RSA2048 (RSA2048 PKCS1-UTF8) e deverá utilizar uma chave pública fornecida pela Via Varejo, no Swagger, GET /seguranca/chaves.
 
 Na pasta [app / ts / service] está a classe de serviço responsável por fazer a comunicação com a Api.
 
