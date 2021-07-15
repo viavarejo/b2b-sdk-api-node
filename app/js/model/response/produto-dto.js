@@ -1,4 +1,7 @@
-export class ProdutoDTO {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProdutoDTO = void 0;
+class ProdutoDTO {
     getData() {
         return this.data;
     }
@@ -12,3 +15,4 @@ export class ProdutoDTO {
         this.error = error;
     }
 }
+exports.ProdutoDTO = ProdutoDTO;

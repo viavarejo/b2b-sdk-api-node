@@ -1,4 +1,7 @@
-export class FormasPagamento {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FormasPagamento = void 0;
+class FormasPagamento {
     getNome() {
         return this.nome;
     }
@@ -12,3 +15,4 @@ export class FormasPagamento {
         this.idFormaPagamento = idFormaPagamento;
     }
 }
+exports.FormasPagamento = FormasPagamento;

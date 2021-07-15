@@ -1,4 +1,7 @@
-export class DadosPedidoHelper {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DadosPedidoHelper = void 0;
+class DadosPedidoHelper {
     getTotalPedido() {
         return this.valorFrete + this.precoVenda;
     }
@@ -33,3 +36,4 @@ export class DadosPedidoHelper {
         this.precoVenda = precoVenda;
     }
 }
+exports.DadosPedidoHelper = DadosPedidoHelper;

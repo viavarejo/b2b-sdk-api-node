@@ -1,9 +1,9 @@
-import { Field } from "./field.js";
+import { Field } from "./field";
 
 export class Error{
-    private  code : string;
-    private message : string;
-    private fields : Field[];
+    public code : string;
+    public message : string;
+    public fields : Field[];
 
     public getCode(): string {
         return this.code;

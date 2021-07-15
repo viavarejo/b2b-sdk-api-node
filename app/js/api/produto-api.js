@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,19 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { RequestService } from '../service/request-service.js';
-export class ProdutoApi {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProdutoApi = void 0;
+const request_service_1 = require("../service/request-service");
+class ProdutoApi {
     constructor() {
-        this.requestService = new RequestService();
+        this.requestService = new request_service_1.RequestService();
     }
-    getDadosProduto(idLogista, idSKu) {
+    getDadosProduto(idLojista, idSKu) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.requestService.get("/lojistas/" + idLogista + "/produtos/" + idSKu, null);
+            return yield this.requestService.get("/lojistas/" + idLojista + "/produtos/" + idSKu, null);
         });
     }
-    getListaDadosProdutos(idLogista, idSKuList) {
+    getListaDadosProdutos(idLojista, idSKuList) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.requestService.getList("/lojistas/" + idLogista + "/produtos", idSKuList);
+            return yield this.requestService.getList("/lojistas/" + idLojista + "/produtos", idSKuList);
         });
     }
     getDadosProdutoCampanha(idCampanha, idSKu, cnpj, idLojista) {
@@ -31,3 +34,4 @@ export class ProdutoApi {
         });
     }
 }
+exports.ProdutoApi = ProdutoApi;

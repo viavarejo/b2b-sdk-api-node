@@ -1,4 +1,7 @@
-export class Campanha {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Campanha = void 0;
+class Campanha {
     getIdCampanha() {
         return this.idCampanha;
     }
@@ -54,3 +57,4 @@ export class Campanha {
         this.entregaTipos = entregaTipos;
     }
 }
+exports.Campanha = Campanha;

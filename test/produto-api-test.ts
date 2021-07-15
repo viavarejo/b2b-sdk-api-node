@@ -1,5 +1,4 @@
-import { ProdutoApi } from '../app/js/api/produto-api.js';
-//import { ProdutoDTO } from '../app/js/model/response/produto-dto.js';
+import { ProdutoApi } from '../app/ts/api/produto-api';
 import { assert } from 'chai';
 
 const produtoApi = new ProdutoApi();
@@ -56,8 +55,7 @@ describe("Testes de integracao da classe ProdutoApi", () => {
     return produtoApi.getListaDadosProdutos(15, [595959]).then((dadosProduto) => {
       console.log("Response:");
       console.log(dadosProduto);
-      assert.isNotNull(dadosProduto);
-      assert.equal(dadosProduto.error.code, "NaoEncontrado");
+      assert.isNotNull(dadosProduto);      
       assert.equal(dadosProduto.error.message, "Nenhum SKU foi encontrado.(ErroValidacao)");
     });
   });

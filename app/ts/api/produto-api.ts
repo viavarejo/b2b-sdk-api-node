@@ -1,16 +1,16 @@
-import { RequestService } from '../service/request-service.js';
-import { ProdutoDTO } from '../model/response/produto-dto.js';
-import { ProdutosDTO } from '../model/response/produtos-dto.js';
+import { RequestService } from '../service/request-service';
+import { ProdutoDTO } from '../model/response/produto-dto';
+import { ProdutosDTO } from '../model/response/produtos-dto';
 
 export class ProdutoApi {
   private requestService: RequestService = new RequestService();
 
-  public async getDadosProduto(idLogista: string, idSKu: string): Promise<ProdutoDTO> {
-    return await this.requestService.get("/lojistas/" + idLogista + "/produtos/" + idSKu, null);
+  public async getDadosProduto(idLojista: number, idSKu: number): Promise<ProdutoDTO> {
+    return await this.requestService.get("/lojistas/" + idLojista + "/produtos/" + idSKu, null);
   }
 
-  public async getListaDadosProdutos(idLogista: string, idSKuList: number[]): Promise<ProdutosDTO> {
-    return await this.requestService.getList("/lojistas/" + idLogista + "/produtos", idSKuList);
+  public async getListaDadosProdutos(idLojista: number, idSKuList: number[]): Promise<ProdutosDTO> {
+    return await this.requestService.getList("/lojistas/" + idLojista + "/produtos", idSKuList);
   }
 
   public async getDadosProdutoCampanha(idCampanha: string, idSKu: string, cnpj: string, idLojista: string): Promise<ProdutoDTO> {

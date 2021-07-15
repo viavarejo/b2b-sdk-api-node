@@ -1,12 +1,12 @@
 export class Pagamento {
-    private codigoDoErro: string;
-    private valorComplementar: number;
-    private quantidadeParcelas: number;
-    private valorParcela: number;
-    private idFormaPagamento: number;
-    private erro: boolean;
-    private mensagemDeErro: string;
-    private url: string;
+    public codigoDoErro: string;
+    public valorComplementar: number;
+    public quantidadeParcelas: number;
+    public valorParcela: number;
+    public idFormaPagamento: number;
+    public erro: boolean;
+    public mensagemDeErro: string;
+    public url: string;
 
     public getCodigoDoErro(): string {
         return this.codigoDoErro;

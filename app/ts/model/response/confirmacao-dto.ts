@@ -2,8 +2,8 @@ import { Confirmacao } from "./confirmacao";
 import { Error } from "./error";
 
 export class ConfirmacaoDTO{
-    private  data:Confirmacao;
-	private  error:Error;
+    public data:Confirmacao;
+	public error:Error;
 
     public getData(): Confirmacao {
         return this.data;

@@ -1,4 +1,7 @@
-export class Entrega {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Entrega = void 0;
+class Entrega {
     getCodigoEntrega() {
         return this.codigoEntrega;
     }
@@ -102,3 +105,4 @@ export class Entrega {
         this.motivo = motivo;
     }
 }
+exports.Entrega = Entrega;

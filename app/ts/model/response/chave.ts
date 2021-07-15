@@ -1,9 +1,9 @@
 export class Chave {
-    private chavePublica: string;
-    private dataCadastro: string;
-    private dataExpiracao: string;
-    private dataAtualizacao: string;
-    private ativo: boolean;
+    public chavePublica: string;
+    public dataCadastro: string;
+    public dataExpiracao: string;
+    public dataAtualizacao: string;
+    public ativo: boolean;
 
     public getChavePublica(): string {
         return this.chavePublica;

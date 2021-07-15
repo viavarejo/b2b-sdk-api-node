@@ -1,9 +1,9 @@
 
 export class DestinatarioDto {
-    private nome: string;
-    private cpfCnpj: string;
-    private inscricaoEstadual: string;
-    private email: string;
+    public nome: string;
+    public cpfCnpj: string;
+    public inscricaoEstadual: string;
+    public email: string;
 
     public getNome(): string {
         return this.nome;

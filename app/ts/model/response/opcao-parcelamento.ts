@@ -1,10 +1,10 @@
 
 export class OpcaoParcelamento {
-    private idFormaPagamento: number;
-    private quantidadeParcelas: number;
-    private taxaJurosAoMes: number;
-    private valorParcela: number;
-    private valorTotal: number;
+    public idFormaPagamento: number;
+    public quantidadeParcelas: number;
+    public taxaJurosAoMes: number;
+    public valorParcela: number;
+    public valorTotal: number;
 
     public getIdFormaPagamento(): number {
         return this.idFormaPagamento;

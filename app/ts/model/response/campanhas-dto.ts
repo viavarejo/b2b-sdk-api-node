@@ -1,10 +1,10 @@
-import { Campanha } from "./campanha.js";
-import { Error } from "./error.js";
+import { Campanha } from "./campanha";
+import { Error } from "./error";
 
 export class CampanhasDTO {
 
-    private data: Campanha[];
-    private error: Error;
+    public data: Campanha[];
+    public error: Error;
 
     public getData(): Campanha[] {
         return this.data;

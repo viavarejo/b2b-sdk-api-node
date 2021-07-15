@@ -1,15 +1,15 @@
 export class EnderecoCobrancaDto {
-    private cep: string;
-    private estado: string;
-    private logradouro: string;
-    private cidade: string;
-    private numero: number;
-    private referencia: string;
-    private bairro: string;
-    private complemento: string;
-    private telefone: string;
-    private telefone2: string;
-    private telefone3: string;
+    public cep: string;
+    public estado: string;
+    public logradouro: string;
+    public cidade: string;
+    public numero: number;
+    public referencia: string;
+    public bairro: string;
+    public complemento: string;
+    public telefone: string;
+    public telefone2: string;
+    public telefone3: string;
 
     public getCep(): string {
         return this.cep;

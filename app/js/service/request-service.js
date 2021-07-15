@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,14 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import fetch from "node-fetch";
-import { config } from "dotenv";
-export class RequestService {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RequestService = void 0;
+const node_fetch_1 = require("node-fetch");
+const dotenv_1 = require("dotenv");
+class RequestService {
     constructor() {
         this.loadEnv();
     }
     loadEnv() {
-        config();
+        dotenv_1.config();
         //console.log(process.env.USERDOMAIN);
         //console.log(process.env.HOST_BANDEIRA);
         this.basePath = process.env.HOST_BANDEIRA;
@@ -85,7 +88,7 @@ export class RequestService {
     }
     doFetch(url, options) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resposta = yield fetch(url, options);
+            const resposta = yield node_fetch_1.default(url, options);
             //if (resposta.ok) {
             return resposta.json();
             //} 
@@ -100,3 +103,4 @@ export class RequestService {
         return params.toString();
     }
 }
+exports.RequestService = RequestService;

@@ -1,5 +1,5 @@
-import { RequestService } from '../service/request-service.js';
-import { ChaveDTO } from '../model/response/chave-dto.js';
+import { RequestService } from '../service/request-service';
+import { ChaveDTO } from '../model/response/chave-dto';
 
 export class SegurancaApi{
     private requestService: RequestService = new RequestService();

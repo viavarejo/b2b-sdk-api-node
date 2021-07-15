@@ -1,9 +1,9 @@
-import { OpcaoParcelamento } from './opcao-parcelamento.js';
-import { Error } from "./error.js";
+import { OpcaoParcelamento } from './opcao-parcelamento';
+import { Error } from "./error";
 
 export class OpcoesParcelamentoDTO {
-    private data: OpcaoParcelamento[];
-    private error: Error;
+    public data: OpcaoParcelamento[];
+    public error: Error;
 
     public getData(): OpcaoParcelamento[] {
         return this.data;

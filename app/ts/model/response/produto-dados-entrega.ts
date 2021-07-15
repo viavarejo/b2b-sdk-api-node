@@ -1,9 +1,9 @@
-import { Frete } from "./frete.js";
+import { Frete } from "./frete";
 
 export class ProdutoDadosEntrega{
-    private  idEntregaTipo : number;
-    private disponibilidade : boolean;
-    private fretes :  Frete[]; 
+    public  idEntregaTipo : number;
+    public disponibilidade : boolean;
+    public fretes :  Frete[]; 
 
     public getIdEntregaTipo(): number {
         return this.idEntregaTipo;

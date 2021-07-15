@@ -1,11 +1,11 @@
-import { ProdutoCarrinho } from "./produto-carrinho.js";
+import { ProdutoCarrinho } from "./produto-carrinho";
 
 export class Carrinho {
-    private valorFrete: number;
-    private valorImpostos: number;
-    private valorTotaldosProdutos: number;
-    private valorTotaldoPedido: number;
-    private produtos: ProdutoCarrinho[];
+    public valorFrete: number;
+    public valorImpostos: number;
+    public valorTotaldosProdutos: number;
+    public valorTotaldoPedido: number;
+    public produtos: ProdutoCarrinho[];
 
     public getValorFrete(): number {
         return this.valorFrete;

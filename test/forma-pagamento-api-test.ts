@@ -1,4 +1,4 @@
-import { FormaPagamentoApi } from '../app/js/api/forma-pagamento-api.js';
+import { FormaPagamentoApi } from '../app/ts/api/forma-pagamento-api';
 import { assert } from 'chai';
 
 const api = new FormaPagamentoApi();

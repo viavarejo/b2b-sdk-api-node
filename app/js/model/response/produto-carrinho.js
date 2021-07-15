@@ -1,4 +1,7 @@
-export class ProdutoCarrinho {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProdutoCarrinho = void 0;
+class ProdutoCarrinho {
     getIdSku() {
         return this.idSku;
     }
@@ -54,3 +57,4 @@ export class ProdutoCarrinho {
         this.codigoDoErro = codigoDoErro;
     }
 }
+exports.ProdutoCarrinho = ProdutoCarrinho;

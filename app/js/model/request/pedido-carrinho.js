@@ -1,4 +1,7 @@
-export class PedidoCarrinho {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PedidoCarrinho = void 0;
+class PedidoCarrinho {
     getIdCampanha() {
         return this.idCampanha;
     }
@@ -24,3 +27,4 @@ export class PedidoCarrinho {
         this.produtos = produtos;
     }
 }
+exports.PedidoCarrinho = PedidoCarrinho;

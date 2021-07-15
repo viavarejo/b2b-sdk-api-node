@@ -1,12 +1,12 @@
-import { CartaoCreditoDadosDto } from "./cartao-credito-dados-dto.js";
-import { CartaoCreditoDadosValidacaoDto } from "./cartao-credito-dados-validacao-dto.js";
+import { CartaoCreditoDadosDto } from "./cartao-credito-dados-dto";
+import { CartaoCreditoDadosValidacaoDto } from "./cartao-credito-dados-validacao-dto";
 
 export class PagamentoComplementarDto {
-    private idFormaPagamento: number;
-    private dadosCartaoCredito: CartaoCreditoDadosDto;
-    private dadosCartaoCreditoValidacao: CartaoCreditoDadosValidacaoDto;
-    private valorComplementarComJuros: number;
-    private valorComplementar: number;
+    public idFormaPagamento: number;
+    public dadosCartaoCredito: CartaoCreditoDadosDto;
+    public dadosCartaoCreditoValidacao: CartaoCreditoDadosValidacaoDto;
+    public valorComplementarComJuros: number;
+    public valorComplementar: number;
 
     public getIdFormaPagamento(): number {
         return this.idFormaPagamento;

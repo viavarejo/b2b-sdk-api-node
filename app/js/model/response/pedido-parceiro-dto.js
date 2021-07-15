@@ -1,4 +1,7 @@
-export class PedidoParceiroDTO {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PedidoParceiroDTO = void 0;
+class PedidoParceiroDTO {
     getPedido() {
         return this.pedido;
     }
@@ -24,3 +27,4 @@ export class PedidoParceiroDTO {
         this.entregas = entregas;
     }
 }
+exports.PedidoParceiroDTO = PedidoParceiroDTO;

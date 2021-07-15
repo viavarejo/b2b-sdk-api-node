@@ -1,10 +1,10 @@
-import { Error } from "./error.js";
-import { Carrinho } from "./carrinho.js";
+import { Error } from "./error";
+import { Carrinho } from "./carrinho";
 
 export class CalculoCarrinho {
 
-    private data: Carrinho;
-    private error: Error;
+    public data: Carrinho;
+    public error: Error;
 
     public getData(): Carrinho {
         return this.data;

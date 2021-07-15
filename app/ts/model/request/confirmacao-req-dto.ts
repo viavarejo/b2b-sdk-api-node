@@ -1,13 +1,13 @@
 
 export class ConfirmacaoReqDTO {
 
-    private idCampanha: number;
-    private idPedidoParceiro: number;
-    private confirmado: boolean;
-    private idPedidoMktplc: string;
-    private cancelado: boolean;
-    private motivoCancelamento: string;
-    private parceiro: string;
+    public idCampanha: number;
+    public idPedidoParceiro: number;
+    public confirmado: boolean;
+    public idPedidoMktplc: string;
+    public cancelado: boolean;
+    public motivoCancelamento: string;
+    public parceiro: string;
 
     public getIdCampanha(): number {
         return this.idCampanha;

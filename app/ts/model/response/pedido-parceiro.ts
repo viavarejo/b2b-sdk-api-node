@@ -1,13 +1,13 @@
 export class PedidoParceiro {
-    private codigoPedido: number;
-    private dataHora: string;
-    private idPedidoMktplc: number;
-    private pedidoParceiro: number;
-    private urlBoleto: string;
-    private valorAdicional: number;
-    private valorFrete: number;
-    private valorProduto: number;
-    private valorTotalPedido: number;
+    public codigoPedido: number;
+    public dataHora: string;
+    public idPedidoMktplc: number;
+    public pedidoParceiro: number;
+    public urlBoleto: string;
+    public valorAdicional: number;
+    public valorFrete: number;
+    public valorProduto: number;
+    public valorTotalPedido: number;
 
     public getCodigoPedido(): number {
         return this.codigoPedido;

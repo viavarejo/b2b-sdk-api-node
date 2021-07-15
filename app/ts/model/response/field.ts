@@ -1,7 +1,7 @@
 export class Field{
-    private  field : string;
-    private  value : string;
-    private  message : string;
+    public  field : string;
+    public  value : string;
+    public  message : string;
 
     public getField(): string {
         return this.field;

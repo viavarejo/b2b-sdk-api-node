@@ -1,18 +1,18 @@
-import { Produto } from "./produto.js";
-import { DadosEntrega } from "./dados-entrega.js";
-import { DadosPagamentoComplementar } from "./dados-pagamento-complementar.js";
+import { Produto } from "./produto";
+import { DadosEntrega } from "./dados-entrega";
+import { DadosPagamentoComplementar } from "./dados-pagamento-complementar";
 
 export class CriacaoPedido {
-    private valorProduto: number;
-    private valorTotalPedido: number;
-    private codigoPedido: number;
-    private pedidoParceiro: number;
-    private idPedidoMktplc: string;
-    private produtos: Produto[];
-    private parametrosExtras: string;
-    private aguardandoConfirmacao: boolean;
-    private dadosEntrega: DadosEntrega;
-    private dadosPagamentoComplementar: DadosPagamentoComplementar;
+    public valorProduto: number;
+    public valorTotalPedido: number;
+    public codigoPedido: number;
+    public pedidoParceiro: number;
+    public idPedidoMktplc: string;
+    public produtos: Produto[];
+    public parametrosExtras: string;
+    public aguardandoConfirmacao: boolean;
+    public dadosEntrega: DadosEntrega;
+    public dadosPagamentoComplementar: DadosPagamentoComplementar;
 
     public getValorProduto(): number {
         return this.valorProduto;

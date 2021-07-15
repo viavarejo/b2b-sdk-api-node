@@ -1,4 +1,7 @@
-export class CalculoCarrinho {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CalculoCarrinho = void 0;
+class CalculoCarrinho {
     getData() {
         return this.data;
     }
@@ -12,3 +15,4 @@ export class CalculoCarrinho {
         this.error = error;
     }
 }
+exports.CalculoCarrinho = CalculoCarrinho;

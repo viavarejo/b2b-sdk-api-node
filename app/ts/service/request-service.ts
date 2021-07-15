@@ -1,5 +1,4 @@
 import fetch from "node-fetch";
-import { Hosts } from "../model/common/hosts.js";
 import { config } from "dotenv";
 
 export class RequestService {

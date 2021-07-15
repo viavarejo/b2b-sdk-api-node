@@ -1,4 +1,7 @@
-export class Carrinho {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Carrinho = void 0;
+class Carrinho {
     getValorFrete() {
         return this.valorFrete;
     }
@@ -30,3 +33,4 @@ export class Carrinho {
         this.produtos = produtos;
     }
 }
+exports.Carrinho = Carrinho;

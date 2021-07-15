@@ -1,4 +1,7 @@
-export class DadosPagamentoComplementar {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DadosPagamentoComplementar = void 0;
+class DadosPagamentoComplementar {
     getPagamentos() {
         return this.pagamentos;
     }
@@ -18,3 +21,4 @@ export class DadosPagamentoComplementar {
         this.valorTotalComplementarComJuros = valorTotalComplementarComJuros;
     }
 }
+exports.DadosPagamentoComplementar = DadosPagamentoComplementar;

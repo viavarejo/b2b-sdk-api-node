@@ -1,4 +1,7 @@
-export class Pagamento {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Pagamento = void 0;
+class Pagamento {
     getCodigoDoErro() {
         return this.codigoDoErro;
     }
@@ -48,3 +51,4 @@ export class Pagamento {
         this.url = url;
     }
 }
+exports.Pagamento = Pagamento;

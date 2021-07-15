@@ -1,11 +1,11 @@
 export class CartaoCreditoDadosDto {
-    private nome: string;
-    private numero: string;
-    private codigoVerificador: string;
-    private validadeAno: string;
-    private validadeMes: string;
-    private validadeAnoMes: string;
-    private quantidadeParcelas: number;
+    public nome: string;
+    public numero: string;
+    public codigoVerificador: string;
+    public validadeAno: string;
+    public validadeMes: string;
+    public validadeAnoMes: string;
+    public quantidadeParcelas: number;
 
     public getNome(): string {
         return this.nome;

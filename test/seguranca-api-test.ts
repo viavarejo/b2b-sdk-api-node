@@ -1,4 +1,4 @@
-import { SegurancaApi } from '../app/js/api/seguranca-api.js';
+import { SegurancaApi } from '../app/ts/api/seguranca-api';
 import { assert } from 'chai';
 
 const segurancaApi = new SegurancaApi();

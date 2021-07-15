@@ -1,4 +1,4 @@
-import { CampanhaApi } from '../app/js/api/campanha-api.js';
+import { CampanhaApi } from '../app/ts/api/campanha-api';
 import { assert } from 'chai';
 
 const api = new CampanhaApi();

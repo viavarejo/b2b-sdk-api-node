@@ -1,4 +1,7 @@
-export class CartaoCreditoDadosDto {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CartaoCreditoDadosDto = void 0;
+class CartaoCreditoDadosDto {
     getNome() {
         return this.nome;
     }
@@ -42,3 +45,4 @@ export class CartaoCreditoDadosDto {
         this.quantidadeParcelas = quantidadeParcelas;
     }
 }
+exports.CartaoCreditoDadosDto = CartaoCreditoDadosDto;

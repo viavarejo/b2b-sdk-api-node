@@ -1,10 +1,10 @@
-import { ListaProdutos } from './lista-produtos.js';
-import { Error } from "./error.js";
+import { ListaProdutos } from './lista-produtos';
+import { Error } from "./error";
 
 export class ProdutoDTO {
 
-    private data: ListaProdutos;
-    private error: Error;
+    public data: ListaProdutos;
+    public error: Error;
 
     public getData(): ListaProdutos {
         return this.data;

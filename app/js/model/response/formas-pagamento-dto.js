@@ -1,4 +1,7 @@
-export class FormasPagamentoDTO {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FormasPagamentoDTO = void 0;
+class FormasPagamentoDTO {
     getData() {
         return this.data;
     }
@@ -12,3 +15,4 @@ export class FormasPagamentoDTO {
         this.error = error;
     }
 }
+exports.FormasPagamentoDTO = FormasPagamentoDTO;

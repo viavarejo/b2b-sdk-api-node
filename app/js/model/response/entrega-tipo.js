@@ -1,4 +1,7 @@
-export class EntregaTipo {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EntregaTipo = void 0;
+class EntregaTipo {
     getIdEntregaTipo() {
         return this.idEntregaTipo;
     }
@@ -18,3 +21,4 @@ export class EntregaTipo {
         this.habilitado = habilitado;
     }
 }
+exports.EntregaTipo = EntregaTipo;

@@ -1,4 +1,7 @@
-export class ProdutoDadosEntrega {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProdutoDadosEntrega = void 0;
+class ProdutoDadosEntrega {
     getIdEntregaTipo() {
         return this.idEntregaTipo;
     }
@@ -18,3 +21,4 @@ export class ProdutoDadosEntrega {
         this.fretes = fretes;
     }
 }
+exports.ProdutoDadosEntrega = ProdutoDadosEntrega;

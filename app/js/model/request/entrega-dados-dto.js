@@ -1,4 +1,7 @@
-export class EntregaDadosDto {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EntregaDadosDto = void 0;
+class EntregaDadosDto {
     getPrevisaoDeEntrega() {
         return this.previsaoDeEntrega;
     }
@@ -30,3 +33,4 @@ export class EntregaDadosDto {
         this.idUnidadeNegocio = idUnidadeNegocio;
     }
 }
+exports.EntregaDadosDto = EntregaDadosDto;

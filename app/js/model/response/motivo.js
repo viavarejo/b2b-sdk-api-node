@@ -1,4 +1,7 @@
-export class Motivo {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Motivo = void 0;
+class Motivo {
     getCategoria() {
         return this.categoria;
     }
@@ -24,3 +27,4 @@ export class Motivo {
         this.observacao = observacao;
     }
 }
+exports.Motivo = Motivo;

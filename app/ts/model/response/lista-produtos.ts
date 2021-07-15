@@ -1,17 +1,17 @@
 import { NumberLiteralType } from "../../../../node_modules/typescript/lib/typescript";
-import { ProdutoDadosEntrega } from "./produto-dados-entrega.js"
+import { ProdutoDadosEntrega } from "./produto-dados-entrega"
 
 export class ListaProdutos{
-    private  nome : string;
-    private  descricao : string
-    private  imagem : string
-    private  categoria : number;
-    private  valor : number;
-    private  valorDe : number;
-    private  disponibilidade : boolean;
-    private  foraDeLinha : boolean;
-    private  idLojista : number;
-    private  dadosEntrega : ProdutoDadosEntrega[];
+    public nome : string;
+    public descricao : string
+    public imagem : string
+    public categoria : number;
+    public valor : number;
+    public valorDe : number;
+    public disponibilidade : boolean;
+    public foraDeLinha : boolean;
+    public idLojista : number;
+    public dadosEntrega : ProdutoDadosEntrega[];
 
     public getNome(): string {
         return this.nome;

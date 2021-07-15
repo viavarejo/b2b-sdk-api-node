@@ -1,8 +1,8 @@
 export class Motivo {
-    private categoria: string;
-    private assunto: string;
-    private motivo: string;
-    private observacao: string;
+    public categoria: string;
+    public assunto: string;
+    public motivo: string;
+    public observacao: string;
 
     public getCategoria(): string {
         return this.categoria;

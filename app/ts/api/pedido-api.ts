@@ -1,12 +1,12 @@
 import * as util from "util";
-import { RequestService } from '../service/request-service.js';
-import { PedidoCarrinho } from '../model/request/pedido-carrinho.js';
-import { CalculoCarrinho } from "../model/response/calculo-carrinho.js";
-import { ConfirmacaoReqDTO } from "../model/request/confirmacao-req-dto.js";
-import { ConfirmacaoDTO } from "../model/response/confirmacao-dto.js";
-import { CriacaoPedidoRequest } from "../model/request/criacao-pedido-request.js";
-import { CriacaoPedidoDTO } from "../model/response/criacao-pedido-dto.js";
-import { PedidoParceiroData } from "../model/response/pedido-parceiro-data.js";
+import { RequestService } from '../service/request-service';
+import { PedidoCarrinho } from '../model/request/pedido-carrinho';
+import { CalculoCarrinho } from '../model/response/calculo-carrinho';
+import { ConfirmacaoReqDTO } from '../model/request/confirmacao-req-dto';
+import { ConfirmacaoDTO } from '../model/response/confirmacao-dto';
+import { CriacaoPedidoRequest } from '../model/request/criacao-pedido-request';
+import { CriacaoPedidoDTO } from '../model/response/criacao-pedido-dto';
+import { PedidoParceiroData } from '../model/response/pedido-parceiro-data';
 
 export class PedidoApi {
     private requestService: RequestService = new RequestService();

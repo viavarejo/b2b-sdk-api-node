@@ -70,7 +70,7 @@ A seguir, são apresentadas as APIs e exemplos com as principais operações do 
 
 - ## Campanha
     Api Utilizada para operações de campanha
-    Os testes unitários estão disponiveis no arquivo test/campanha-api-test.js
+    Os testes unitários estão disponiveis no arquivo test/campanha-api-test.ts
     Esses testes servirão como exemplo de utilização da api.
 
     | Obtém todas as campanhas vinculadas ao parceiro: |
@@ -89,7 +89,7 @@ A seguir, são apresentadas as APIs e exemplos com as principais operações do 
 
 - ## Pedido
     Api utilizada para operações de pedidos
-    Os testes unitários estão disponiveis no arquivo test/pedido-api-test.js
+    Os testes unitários estão disponiveis no arquivo test/pedido-api-test.ts
     Esses testes servirão como exemplo de utilização da api.
     ### observação
     As constantes do arquivo menionado acima ID_SKU_CRIACAO_PEDIDO, ID_SKU_CRIACAO_PEDIDO_COM_CARTAO, ID_CAMPANHA, ID_LOJISTA e CEP podem mudar dependendo de quando forem testar.
@@ -129,7 +129,7 @@ A seguir, são apresentadas as APIs e exemplos com as principais operações do 
 
 - ## Forma de Pagamento
     Api Utilizada para operações de forma de pagamento
-    Os testes unitários estão disponiveis no arquivo test/forma-pagamento-api-test.js
+    Os testes unitários estão disponiveis no arquivo test/forma-pagamento-api-test.ts
     Esses testes servirão como exemplo de utilização da api.
 
     | Obter opções de parcelamento: |
@@ -142,7 +142,7 @@ A seguir, são apresentadas as APIs e exemplos com as principais operações do 
 
 - ## Produto
     Api Utilizada para operações de produto
-    Os testes unitários estão disponiveis no arquivo test/produto-api-test.js
+    Os testes unitários estão disponiveis no arquivo test/produto-api-test.ts
     Esses testes servirão como exemplo de utilização da api.
 
     | Obter dados do produto: |
@@ -167,7 +167,7 @@ A seguir, são apresentadas as APIs e exemplos com as principais operações do 
 
 - ## Seguranca
     Api Utilizada para operações de seguranca
-    Os testes unitários estão disponiveis no arquivo test/segurqanca-api-test.js
+    Os testes unitários estão disponiveis no arquivo test/segurqanca-api-test.ts
     Esses testes servirão como exemplo de utilização da api.
 
     | Obter chave pública 2048 bits utilizada para criptografia dos dados do cartão: |
@@ -181,7 +181,7 @@ A seguir, são apresentadas as APIs e exemplos com as principais operações do 
 ## Executando os testes unitarios
 
 * Teste de arquivo individual:
->`npm test ./test/pedido-api-test.js`
+>`npm test ./test/campanha-api-test.ts`
 
 ![Screenshot](tela-testes.png)
 

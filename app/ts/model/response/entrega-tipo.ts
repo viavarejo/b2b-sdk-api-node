@@ -1,8 +1,8 @@
 
 export class EntregaTipo {
-    private idEntregaTipo: number;
-    private nome: string;
-    private habilitado: boolean;
+    public idEntregaTipo: number;
+    public nome: string;
+    public habilitado: boolean;
 
     public getIdEntregaTipo(): number {
         return this.idEntregaTipo;

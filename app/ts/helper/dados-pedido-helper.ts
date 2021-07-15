@@ -1,9 +1,9 @@
 export class DadosPedidoHelper {
-    private idPedido: number;
-    private idPedidoParceiro: number;
-    private idSku: number;
-    private valorFrete: number;
-    private precoVenda: number;
+    public idPedido: number;
+    public idPedidoParceiro: number;
+    public idSku: number;
+    public valorFrete: number;
+    public precoVenda: number;
 
     public  getTotalPedido(): number{
         return this.valorFrete + this.precoVenda;

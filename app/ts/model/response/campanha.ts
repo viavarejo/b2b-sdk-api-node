@@ -1,16 +1,16 @@
-import { EntregaTipo } from "./entrega-tipo.js";
+import { EntregaTipo } from "./entrega-tipo";
 
 export class Campanha {
 
-    private idCampanha: number;
-    private nome: string;
-    private dataInicio: string;
-    private dataFim: string;
-    private idTipoCampanha: number;
-    private tipoCampanha: string;
-    private cnpjContrato: string;
-    private status: boolean;
-    private entregaTipos: EntregaTipo[];
+    public idCampanha: number;
+    public nome: string;
+    public dataInicio: string;
+    public dataFim: string;
+    public idTipoCampanha: number;
+    public tipoCampanha: string;
+    public cnpjContrato: string;
+    public status: boolean;
+    public entregaTipos: EntregaTipo[];
 
     public getIdCampanha(): number {
         return this.idCampanha;

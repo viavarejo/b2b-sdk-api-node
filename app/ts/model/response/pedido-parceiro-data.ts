@@ -1,9 +1,9 @@
-import { Error } from "./error.js";
-import { PedidoParceiroDTO } from "./pedido-parceiro-dto.js";
+import { Error } from "./error";
+import { PedidoParceiroDTO } from "./pedido-parceiro-dto";
 
 export class PedidoParceiroData {
-    private data: PedidoParceiroDTO;
-    private error: Error;
+    public data: PedidoParceiroDTO;
+    public error: Error;
 
     public getData(): PedidoParceiroDTO {
         return this.data;

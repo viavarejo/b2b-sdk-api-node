@@ -1,4 +1,7 @@
-export class DestinatarioDto {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DestinatarioDto = void 0;
+class DestinatarioDto {
     getNome() {
         return this.nome;
     }
@@ -24,3 +27,4 @@ export class DestinatarioDto {
         this.email = email;
     }
 }
+exports.DestinatarioDto = DestinatarioDto;

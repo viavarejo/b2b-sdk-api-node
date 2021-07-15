@@ -1,4 +1,7 @@
-export class Confirmacao {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Confirmacao = void 0;
+class Confirmacao {
     isPedidoConfirmado() {
         return this.pedidoConfirmado;
     }
@@ -12,3 +15,4 @@ export class Confirmacao {
         this.pedidoCancelado = pedidoCancelado;
     }
 }
+exports.Confirmacao = Confirmacao;

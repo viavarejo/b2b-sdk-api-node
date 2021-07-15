@@ -1,10 +1,28 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "outDir": "app/js",
-        "moduleResolution": "node"
+      "module": "commonjs",
+      "allowJs": true,
+      "target": "es6",
+      "outDir": "app/js",
+      "noImplicitAny": true,
+      "moduleResolution": "node",
+      "lib": ["dom", "es2015.promise", "es2015"]
     },
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "jasmine",
+      "node",
+      "mocha",
+      "chai"         
+    ],
     "include": [
-        "app/ts/**/*"
+      "app/ts/**/*.ts"  
+    ],
+    "exclude": [
+      "coverage",
+      "node_modules",
+      "!node_modules/@types"
     ]
-}
+  }

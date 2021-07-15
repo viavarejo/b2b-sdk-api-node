@@ -1,33 +1,33 @@
-import { PedidoProdutoDto } from "./pedido-produto-dto.js";
-import { EnderecoEntregaDto } from "./endereco-entrega-dto.js";
-import { DestinatarioDto } from "./destinatario-dto.js";
-import { PagamentoComplementarDto } from "./pagamento-complementar-dto.js";
-import { EntregaDadosDto } from "./entrega-dados-dto.js";
-import { EnderecoCobrancaDto } from "./endereco-cobranca-dto.js";
+import { PedidoProdutoDto } from "./pedido-produto-dto";
+import { EnderecoEntregaDto } from "./endereco-entrega-dto";
+import { DestinatarioDto } from "./destinatario-dto";
+import { PagamentoComplementarDto } from "./pagamento-complementar-dto";
+import { EntregaDadosDto } from "./entrega-dados-dto";
+import { EnderecoCobrancaDto } from "./endereco-cobranca-dto";
 
 export class CriacaoPedidoRequest {
 
-    private produtos: PedidoProdutoDto[];
-    private enderecoEntrega: EnderecoEntregaDto;
-    private destinatario: DestinatarioDto;
-    private pagtosComplementares: PagamentoComplementarDto[];
-    private dadosEntrega: EntregaDadosDto;
-    private enderecoCobranca: EnderecoCobrancaDto;
-    private campanha: number;
-    private cnpj: string;
-    private pedidoParceiro: number;
-    private idPedidoMktplc: string;
-    private senhaAtendimento: string;
-    private apolice: string;
-    private administrador: number;
-    private parametrosExtras: string;
-    private valorFrete: number;
-    private aguardarConfirmacao: boolean;
-    private optantePeloSimples: boolean;
-    private possuiPagtoComplementar: boolean;
-    private valorTotalPedido: number;
-    private valorTotalComplementar: number;
-    private valorTotalComplementarComJuros: number;
+    public produtos: PedidoProdutoDto[];
+    public enderecoEntrega: EnderecoEntregaDto;
+    public destinatario: DestinatarioDto;
+    public pagtosComplementares: PagamentoComplementarDto[];
+    public dadosEntrega: EntregaDadosDto;
+    public enderecoCobranca: EnderecoCobrancaDto;
+    public campanha: number;
+    public cnpj: string;
+    public pedidoParceiro: number;
+    public idPedidoMktplc: string;
+    public senhaAtendimento: string;
+    public apolice: string;
+    public administrador: number;
+    public parametrosExtras: string;
+    public valorFrete: number;
+    public aguardarConfirmacao: boolean;
+    public optantePeloSimples: boolean;
+    public possuiPagtoComplementar: boolean;
+    public valorTotalPedido: number;
+    public valorTotalComplementar: number;
+    public valorTotalComplementarComJuros: number;
 
     public getProdutos(): PedidoProdutoDto[] {
         return this.produtos;

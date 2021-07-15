@@ -1,9 +1,9 @@
 export class EntregaDadosDto {
-    private previsaoDeEntrega: string;
-    private valorFrete: number;
-    private idEntregaTipo: number;
-    private idEnderecoLojaFisica: number;
-    private idUnidadeNegocio: number;
+    public previsaoDeEntrega: string;
+    public valorFrete: number;
+    public idEntregaTipo: number;
+    public idEnderecoLojaFisica: number;
+    public idUnidadeNegocio: number;
 
     public getPrevisaoDeEntrega(): string {
         return this.previsaoDeEntrega;

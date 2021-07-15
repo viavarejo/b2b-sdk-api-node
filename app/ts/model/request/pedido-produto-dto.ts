@@ -1,9 +1,9 @@
 export class PedidoProdutoDto {
-    private idLojista: number;
-    private codigo: number;
-    private quantidade: number;
-    private premio: number;
-    private precoVenda: number;
+    public idLojista: number;
+    public codigo: number;
+    public quantidade: number;
+    public premio: number;
+    public precoVenda: number;
 
     public getIdLojista(): number {
         return this.idLojista;

@@ -1,4 +1,7 @@
-export class ListaProdutos {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ListaProdutos = void 0;
+class ListaProdutos {
     getNome() {
         return this.nome;
     }
@@ -60,3 +63,4 @@ export class ListaProdutos {
         this.dadosEntrega = dadosEntrega;
     }
 }
+exports.ListaProdutos = ListaProdutos;

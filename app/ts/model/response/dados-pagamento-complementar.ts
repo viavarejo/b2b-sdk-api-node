@@ -1,10 +1,10 @@
 import { PagamentoComplementarDto } from "../request/pagamento-complementar-dto";
-import { Pagamento } from "../request/pagamento.js";
+import { Pagamento } from "../request/pagamento";
 
 export class DadosPagamentoComplementar {
-    private pagamentos: Pagamento;
-    private valorTotalComplementar: number;
-    private valorTotalComplementarComJuros: number;
+    public pagamentos: Pagamento;
+    public valorTotalComplementar: number;
+    public valorTotalComplementarComJuros: number;
 
     public getPagamentos(): Pagamento {
         return this.pagamentos;

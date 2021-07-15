@@ -1,4 +1,7 @@
-export class Frete {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Frete = void 0;
+class Frete {
     getEstado() {
         return this.estado;
     }
@@ -18,3 +21,4 @@ export class Frete {
         this.precoInterior = precoInterior;
     }
 }
+exports.Frete = Frete;

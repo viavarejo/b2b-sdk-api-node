@@ -1,4 +1,7 @@
-export class TrackingEntrega {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TrackingEntrega = void 0;
+class TrackingEntrega {
     getCodDescricao() {
         return this.codDescricao;
     }
@@ -24,3 +27,4 @@ export class TrackingEntrega {
         this.descricao = descricao;
     }
 }
+exports.TrackingEntrega = TrackingEntrega;

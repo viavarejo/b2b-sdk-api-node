@@ -1,4 +1,7 @@
-export class PagamentoComplementarDto {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PagamentoComplementarDto = void 0;
+class PagamentoComplementarDto {
     getIdFormaPagamento() {
         return this.idFormaPagamento;
     }
@@ -30,3 +33,4 @@ export class PagamentoComplementarDto {
         this.valorComplementar = valorComplementar;
     }
 }
+exports.PagamentoComplementarDto = PagamentoComplementarDto;

@@ -1,4 +1,7 @@
-export class DadosCartaoHelper {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DadosCartaoHelper = void 0;
+class DadosCartaoHelper {
     constructor(encryptor, nome, numero, codigoVerificador, anoValidade, mesValidade) {
         this.encryptor = encryptor;
         this.nome = nome;
@@ -59,3 +62,4 @@ export class DadosCartaoHelper {
         this.mesValidade = mesValidade;
     }
 }
+exports.DadosCartaoHelper = DadosCartaoHelper;

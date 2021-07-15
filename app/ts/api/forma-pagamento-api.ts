@@ -1,5 +1,5 @@
-import { RequestService } from '../service/request-service.js';
-import { OpcoesParcelamentoDTO } from '../model/response/opcoes-parcelamento-dto.js';
+import { RequestService } from '../service/request-service';
+import { OpcoesParcelamentoDTO } from '../model/response/opcoes-parcelamento-dto';
 
 export class FormaPagamentoApi {
     private requestService: RequestService = new RequestService();

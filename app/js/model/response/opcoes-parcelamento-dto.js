@@ -1,4 +1,7 @@
-export class OpcoesParcelamentoDTO {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpcoesParcelamentoDTO = void 0;
+class OpcoesParcelamentoDTO {
     getData() {
         return this.data;
     }
@@ -12,3 +15,4 @@ export class OpcoesParcelamentoDTO {
         this.error = error;
     }
 }
+exports.OpcoesParcelamentoDTO = OpcoesParcelamentoDTO;

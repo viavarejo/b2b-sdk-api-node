@@ -1,6 +1,6 @@
-import { RequestService } from '../service/request-service.js';
-import { CampanhasDTO } from '../model/response/campanhas-dto.js';
-import { FormasPagamentoDTO } from '../model/response/formas-pagamento-dto.js';
+import { RequestService } from '../service/request-service';
+import { CampanhasDTO } from '../model/response/campanhas-dto';
+import { FormasPagamentoDTO } from '../model/response/formas-pagamento-dto';
 
 export class CampanhaApi{
     private requestService: RequestService = new RequestService();

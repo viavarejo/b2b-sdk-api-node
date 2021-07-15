@@ -1,4 +1,7 @@
-export class CampanhasDTO {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CampanhasDTO = void 0;
+class CampanhasDTO {
     getData() {
         return this.data;
     }
@@ -12,3 +15,4 @@ export class CampanhasDTO {
         this.error = error;
     }
 }
+exports.CampanhasDTO = CampanhasDTO;

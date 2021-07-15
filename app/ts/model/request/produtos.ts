@@ -1,8 +1,8 @@
 
 export class Produtos {
-    private codigo: number;
-    private quantidade: number;
-    private idLojista: number;
+    public codigo: number;
+    public quantidade: number;
+    public idLojista: number;
 
     public getCodigo(): number {
         return this.codigo;

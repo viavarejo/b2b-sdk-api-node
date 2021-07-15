@@ -1,4 +1,7 @@
-export class Error {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Error = void 0;
+class Error {
     getCode() {
         return this.code;
     }
@@ -18,3 +21,4 @@ export class Error {
         this.fields = fields;
     }
 }
+exports.Error = Error;

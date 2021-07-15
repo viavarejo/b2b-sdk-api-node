@@ -1,6 +1,6 @@
 export class Confirmacao {
-    private pedidoConfirmado: boolean;
-    private pedidoCancelado: boolean;
+    public pedidoConfirmado: boolean;
+    public pedidoCancelado: boolean;
 
     public isPedidoConfirmado(): boolean {
         return this.pedidoConfirmado;

@@ -1,7 +1,7 @@
 export class Frete{
-    private  estado : string;
-    private  precoCapital : string;
-    private  precoInterior : string;
+    public  estado : string;
+    public  precoCapital : string;
+    public  precoInterior : string;
 
     public getEstado(): string {
         return this.estado;

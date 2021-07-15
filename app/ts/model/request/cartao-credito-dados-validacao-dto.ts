@@ -1,9 +1,9 @@
 export class CartaoCreditoDadosValidacaoDto{
-    private nome: string;
-    private numeroMascarado: string;
-    private qtCaracteresCodigoVerificador: string;
-    private validadeAno: string;
-    private validadeMes: string;
+    public nome: string;
+    public numeroMascarado: string;
+    public qtCaracteresCodigoVerificador: string;
+    public validadeAno: string;
+    public validadeMes: string;
 
     public getNome(): string {
         return this.nome;

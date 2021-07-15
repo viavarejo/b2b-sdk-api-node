@@ -1,9 +1,9 @@
-import { Error } from "./error.js";
-import { Chave } from "./chave.js";
+import { Error } from "./error";
+import { Chave } from "./chave";
 
 export class ChaveDTO {
-    private data: Chave;
-    private error: Error;
+    public data: Chave;
+    public error: Error;
 
     public getData(): Chave {
         return this.data;

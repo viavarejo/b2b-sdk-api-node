@@ -1,8 +1,8 @@
 
 export class FormasPagamento {
 
-    private nome: string;
-    private idFormaPagamento: number;
+    public nome: string;
+    public idFormaPagamento: number;
 
     public getNome(): string {
         return this.nome;

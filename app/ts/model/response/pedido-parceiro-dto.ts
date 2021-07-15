@@ -1,13 +1,13 @@
-import { PedidoParceiro } from "./pedido-parceiro.js";
-import { EnderecoCobrancaDto } from "./endereco-cobranca-dto.js";
-import { Destinatario } from "./destinatario.js";
-import { Entrega } from "./entrega.js";
+import { PedidoParceiro } from "./pedido-parceiro";
+import { EnderecoCobrancaDto } from "./endereco-cobranca-dto";
+import { Destinatario } from "./destinatario";
+import { Entrega } from "./entrega";
 
 export class PedidoParceiroDTO {
-    private pedido: PedidoParceiro;
-    private endereco: EnderecoCobrancaDto;
-    private destinatario: Destinatario;
-    private entregas: Entrega;
+    public pedido: PedidoParceiro;
+    public endereco: EnderecoCobrancaDto;
+    public destinatario: Destinatario;
+    public entregas: Entrega;
 
     public getPedido(): PedidoParceiro {
         return this.pedido;

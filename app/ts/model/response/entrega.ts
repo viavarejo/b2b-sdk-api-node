@@ -1,25 +1,25 @@
-import { TrackingEntrega } from "./tracking-entrega.js";
-import { ProdutoEntrega } from "./produto-entrega.js";
-import { Motivo } from "./motivo.js";
+import { TrackingEntrega } from "./tracking-entrega";
+import { ProdutoEntrega } from "./produto-entrega";
+import { Motivo } from "./motivo";
 
 export class Entrega {
-    private codigoEntrega: number;
-    private previsaoEntrega: string;
-    private dataEntrega: string;
-    private dataPrevisao: string;
-    private dataEmissaoNotaFiscal: string;
-    private idNotaFiscal: number;
-    private serieNotaFiscal: string;
-    private chaveAcesso: string;
-    private trackingEntrega: TrackingEntrega[];
-    private produtoEntrega: ProdutoEntrega[];
-    private rastreioEntrega: string;
-    private nomeTransportadora: string;
-    private linkNotaFiscalPDF: string;
-    private listNotaFiscalXML: string;
-    private estorno: boolean;
-    private origem: string;
-    private motivo: Motivo;
+    public codigoEntrega: number;
+    public previsaoEntrega: string;
+    public dataEntrega: string;
+    public dataPrevisao: string;
+    public dataEmissaoNotaFiscal: string;
+    public idNotaFiscal: number;
+    public serieNotaFiscal: string;
+    public chaveAcesso: string;
+    public trackingEntrega: TrackingEntrega[];
+    public produtoEntrega: ProdutoEntrega[];
+    public rastreioEntrega: string;
+    public nomeTransportadora: string;
+    public linkNotaFiscalPDF: string;
+    public listNotaFiscalXML: string;
+    public estorno: boolean;
+    public origem: string;
+    public motivo: Motivo;
 
     public getCodigoEntrega(): number {
         return this.codigoEntrega;

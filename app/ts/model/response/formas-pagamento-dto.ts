@@ -1,10 +1,10 @@
-import { FormasPagamento } from "./formas-pagamento.js";
-import { Error } from "./error.js";
+import { FormasPagamento } from "./formas-pagamento";
+import { Error } from "./error";
 
 export class FormasPagamentoDTO {
 
-    private data: FormasPagamento[];
-    private error: Error;
+    public data: FormasPagamento[];
+    public error: Error;
 
     public getData(): FormasPagamento[] {
         return this.data;

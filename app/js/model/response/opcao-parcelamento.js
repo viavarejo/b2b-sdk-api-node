@@ -1,4 +1,7 @@
-export class OpcaoParcelamento {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OpcaoParcelamento = void 0;
+class OpcaoParcelamento {
     getIdFormaPagamento() {
         return this.idFormaPagamento;
     }
@@ -30,3 +33,4 @@ export class OpcaoParcelamento {
         this.valorTotal = valorTotal;
     }
 }
+exports.OpcaoParcelamento = OpcaoParcelamento;

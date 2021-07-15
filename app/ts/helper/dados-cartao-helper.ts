@@ -1,13 +1,13 @@
-import { Encryptor } from "../security/encryptor.js";
+import { Encryptor } from "../security/encryptor";
 
 export class DadosCartaoHelper {
 
     constructor(private encryptor: Encryptor,
-        private nome: string,
-        private numero: string,
-        private codigoVerificador: string,
-        private anoValidade: string,
-        private mesValidade: string) {
+        public nome: string,
+        public numero: string,
+        public codigoVerificador: string,
+        public anoValidade: string,
+        public mesValidade: string) {
     }
 
     public getEncryptedName(): string {

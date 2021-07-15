@@ -1,4 +1,7 @@
-export class ConfirmacaoReqDTO {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ConfirmacaoReqDTO = void 0;
+class ConfirmacaoReqDTO {
     getIdCampanha() {
         return this.idCampanha;
     }
@@ -42,3 +45,4 @@ export class ConfirmacaoReqDTO {
         this.parceiro = parceiro;
     }
 }
+exports.ConfirmacaoReqDTO = ConfirmacaoReqDTO;

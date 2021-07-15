@@ -1,6 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Encryptor = void 0;
 //import { NodeRSA } from "node-rsa";
-import * as crypto from "crypto";
-export class Encryptor {
+const crypto = require("crypto");
+class Encryptor {
     constructor(publicKey) {
         this.publicKey = this.convertToPem(publicKey);
         // um exemplo
@@ -44,8 +47,9 @@ export class Encryptor {
         for (var x = 0; x < key.length / dist; x++) {
             resultado += key.substring(0 + x * dist, (x + 1) * dist) + '\n';
         }
-        //console.log("-----BEGIN CERTIFICATE-----\n" + resultado + "-----END CERTIFICATE-----");
         resultado = "-----BEGIN CERTIFICATE-----\n" + resultado + "-----END CERTIFICATE-----";
+        //console.log(resultado");
         return resultado;
     }
 }
+exports.Encryptor = Encryptor;

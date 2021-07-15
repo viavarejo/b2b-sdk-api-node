@@ -1,13 +1,13 @@
 export class ProdutoEntrega {
 
-    private codigo: number;
-    private nome: string;
-    private quantidade: number;
-    private valor: number;
-    private frete: number;
-    private valorAdicional: number;
-    private valorTotal: number;
-    private idLojista: number;
+    public codigo: number;
+    public nome: string;
+    public quantidade: number;
+    public valor: number;
+    public frete: number;
+    public valorAdicional: number;
+    public valorTotal: number;
+    public idLojista: number;
 
     public getCodigo(): number {
         return this.codigo;

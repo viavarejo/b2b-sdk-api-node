@@ -1,8 +1,8 @@
 export class TrackingEntrega {
-    private codDescricao: string;
-    private data: string;
-    private dataEntrega: string;
-    private descricao: string;
+    public codDescricao: string;
+    public data: string;
+    public dataEntrega: string;
+    public descricao: string;
 
     public getCodDescricao(): string {
         return this.codDescricao;

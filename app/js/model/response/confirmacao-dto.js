@@ -1,4 +1,7 @@
-export class ConfirmacaoDTO {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ConfirmacaoDTO = void 0;
+class ConfirmacaoDTO {
     getData() {
         return this.data;
     }
@@ -12,3 +15,4 @@ export class ConfirmacaoDTO {
         this.error = error;
     }
 }
+exports.ConfirmacaoDTO = ConfirmacaoDTO;

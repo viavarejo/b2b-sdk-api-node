@@ -1,4 +1,7 @@
-export class CartaoCreditoDadosValidacaoDto {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CartaoCreditoDadosValidacaoDto = void 0;
+class CartaoCreditoDadosValidacaoDto {
     getNome() {
         return this.nome;
     }
@@ -30,3 +33,4 @@ export class CartaoCreditoDadosValidacaoDto {
         this.validadeMes = validadeMes;
     }
 }
+exports.CartaoCreditoDadosValidacaoDto = CartaoCreditoDadosValidacaoDto;

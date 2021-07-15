@@ -1,4 +1,7 @@
-export class EnderecoCobrancaDto {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EnderecoCobrancaDto = void 0;
+class EnderecoCobrancaDto {
     getCep() {
         return this.cep;
     }
@@ -66,3 +69,4 @@ export class EnderecoCobrancaDto {
         this.telefone3 = telefone3;
     }
 }
+exports.EnderecoCobrancaDto = EnderecoCobrancaDto;

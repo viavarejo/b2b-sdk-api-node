@@ -1,9 +1,9 @@
-import { Error } from "./error.js";
-import { CriacaoPedido } from "./criacao-pedido.js";
+import { Error } from "./error";
+import { CriacaoPedido } from "./criacao-pedido";
 
 export class CriacaoPedidoDTO {
-    private data: CriacaoPedido;
-    private error: Error;
+    public data: CriacaoPedido;
+    public error: Error;
 
     public getData(): CriacaoPedido {
         return this.data;

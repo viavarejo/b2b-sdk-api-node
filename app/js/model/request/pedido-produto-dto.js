@@ -1,4 +1,7 @@
-export class PedidoProdutoDto {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PedidoProdutoDto = void 0;
+class PedidoProdutoDto {
     getIdLojista() {
         return this.idLojista;
     }
@@ -30,3 +33,4 @@ export class PedidoProdutoDto {
         this.precoVenda = precoVenda;
     }
 }
+exports.PedidoProdutoDto = PedidoProdutoDto;

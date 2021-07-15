@@ -1,4 +1,7 @@
-export class ProdutoEntrega {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProdutoEntrega = void 0;
+class ProdutoEntrega {
     getCodigo() {
         return this.codigo;
     }
@@ -48,3 +51,4 @@ export class ProdutoEntrega {
         this.idLojista = idLojista;
     }
 }
+exports.ProdutoEntrega = ProdutoEntrega;

@@ -1,4 +1,7 @@
-export class CriacaoPedidoRequest {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CriacaoPedidoRequest = void 0;
+class CriacaoPedidoRequest {
     getProdutos() {
         return this.produtos;
     }
@@ -126,3 +129,4 @@ export class CriacaoPedidoRequest {
         this.valorTotalComplementarComJuros = valorTotalComplementarComJuros;
     }
 }
+exports.CriacaoPedidoRequest = CriacaoPedidoRequest;

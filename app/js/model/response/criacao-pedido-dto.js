@@ -1,4 +1,7 @@
-export class CriacaoPedidoDTO {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CriacaoPedidoDTO = void 0;
+class CriacaoPedidoDTO {
     getData() {
         return this.data;
     }
@@ -12,3 +15,4 @@ export class CriacaoPedidoDTO {
         this.error = error;
     }
 }
+exports.CriacaoPedidoDTO = CriacaoPedidoDTO;

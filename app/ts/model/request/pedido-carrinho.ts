@@ -1,10 +1,10 @@
-import { Produtos } from './produtos.js';
+import { Produtos } from './produtos';
 export class PedidoCarrinho {
 
-    private idCampanha: number;
-    private cnpj: string;
-    private cep: string;
-    private produtos: Produtos[];
+    public idCampanha: number;
+    public cnpj: string;
+    public cep: string;
+    public produtos: Produtos[];
 
     public getIdCampanha(): number {
         return this.idCampanha;

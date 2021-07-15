@@ -1,14 +1,14 @@
 
 export class ProdutoCarrinho {
-    private idSku: number;
-    private previsaoEntrega: string;
-    private valorUnitario: number;
-    private valorTotal: number;
-    private valorTotalFrete: number;
-    private valorTotalImpostos: number;
-    private erro: boolean;
-    private mensagemDeErro: string;
-    private codigoDoErro: string;
+    public idSku: number;
+    public previsaoEntrega: string;
+    public valorUnitario: number;
+    public valorTotal: number;
+    public valorTotalFrete: number;
+    public valorTotalImpostos: number;
+    public erro: boolean;
+    public mensagemDeErro: string;
+    public codigoDoErro: string;
 
     public getIdSku(): number {
         return this.idSku;
