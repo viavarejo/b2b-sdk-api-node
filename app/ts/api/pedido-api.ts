@@ -21,7 +21,7 @@ export class PedidoApi {
         return await this.requestService.post(path, pedidosCarrinho);
     }
 
-    public async getDadosPedidoParceiro(idCompra : string, queryParams: Map<string, string>): Promise<PedidoParceiroData> {
+    public async getDadosPedidoParceiro(idCompra : number, queryParams: Map<string, string>): Promise<PedidoParceiroData> {
         // verify the required parameter
         if (idCompra == null) {
             throw new Error("Missing the required parameter 'idCompra'");
