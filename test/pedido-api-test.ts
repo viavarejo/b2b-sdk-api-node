@@ -421,7 +421,23 @@ describe("Testes de integracao da classe PedidoApi", () => {
         });
     });
 
-    it("10-Deveria retornar erro ao tentar calcular carrinho sem passar o body", function () {
+    it("10-Deveria retornar erro ao tentar pegar os dados do pedido do parceiro sem passar os parametros", function () {
+        this.timeout(10000);
+        let queryParams = new Map();
+        queryParams.set("request.idCompra", pedidoHelper.idPedido);
+        queryParams.set("request.cnpj", CNPJ);
+        queryParams.set("request.idCampanha", ID_CAMPANHA);
+        queryParams.set("request.idPedidoParceiro", pedidoHelper.idPedidoParceiro);
+
+        return pedidoApi.getDadosPedidoParceiro(pedidoHelper.idPedido, null).catch(error => {
+            console.log("Response:");
+            console.log(error.message)
+            assert.isNotNull(error);
+            assert.equal(error.message, "Missing the required parameter 'queryParams'");
+        });
+    });
+
+    it("11-Deveria retornar erro ao tentar calcular carrinho sem passar o body", function () {
         this.timeout(10000);
         return pedidoApi.postCalcularCarrinho(null).catch(error => {
             console.log("Response:");
@@ -431,7 +447,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
         });
     });
 
-    it("11-Deveria retornar erro ao tentar confirmar o pedido sem passar o body", function () {
+    it("12-Deveria retornar erro ao tentar confirmar o pedido sem passar o body", function () {
         this.timeout(10000);
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(null, pedidoComCartaoHelper.idPedido).catch(error => {
             console.log("Response:");
@@ -441,7 +457,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
         });
     });
 
-    it("12-Deveria retornar erro ao tentar confirmar o pedido sem passar o id pedido", function () {
+    it("13-Deveria retornar erro ao tentar confirmar o pedido sem passar o id pedido", function () {
         this.timeout(10000);
         let dto = new ConfirmacaoReqDTO();
         dto.idCampanha = ID_CAMPANHA;
@@ -455,7 +471,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
         });
     });
 
-    it("13-Deveria retornar erro o tentar download do PDF da nota fiscal sem passar parametros", function () {
+    it("14-Deveria retornar erro o tentar download do PDF da nota fiscal sem passar parametros", function () {
         return pedidoApi.getNotaFiscalPedido(null).catch(error => {
             console.log("Response:");
             console.log(error.message)
@@ -464,7 +480,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
         });
     });
 
-    it("14-Deveria  retornar erro o tentar criar pedido sem body", function () {
+    it("15-Deveria  retornar erro o tentar criar pedido sem body", function () {
         return pedidoApi.postCriarPedido(null).catch(error => {
             console.log("Response:");
             console.log(error.message)
