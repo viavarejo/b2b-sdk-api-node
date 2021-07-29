@@ -82,23 +82,23 @@ let flagExibeBody = false;
 
 describe("Testes de integracao da classe PedidoApi", () => {
     // initial method
-    before(function () {
+    before(async function () {
         // get chave publica
         let segurancaApi = new SegurancaApi();
-        let dtoChave = segurancaApi.getChave();
-        //if (dtoChave.data != null) {
-        //    publicKey = dtoChave.data.chavePublica;
-        //} else {
+        const dtoChave = await segurancaApi.getChave();
+        if (dtoChave.data != null) {
+            publicKey = dtoChave.data.chavePublica;
+        } else {
             publicKey = CHAVE_PUBLICA_DEFAULT;
-        //}
+        }
 
         // cria instancia de objetos globais
         pedidoApi = new PedidoApi();
     });
 
 
-    it("1-Deveria retornar o Calculo do Carrinho para criacao do Pedido", function () {
-        this.timeout(10000);
+    it("1-Deveria retornar o Calculo do Carrinho para criacao do Pedido", async function () {
+        this.timeout(20000);
         //mount request object
         let pedidoCarrinho = new PedidoCarrinho();
         let produto = new Produtos();
@@ -115,26 +115,25 @@ describe("Testes de integracao da classe PedidoApi", () => {
         //console.log("Request:");
         //console.log(pedidoCarrinho);
 
-        return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho => {
-            if (flagExibeBody){
+        return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho =>{
+            if (flagExibeBody) {
                 console.log("Response:");
                 console.log(calculoCarrinho);
             }
             assert.isNotNull(calculoCarrinho);
-            assert.isTrue(calculoCarrinho.data.valorFrete > 0.0);
-            assert.isTrue(calculoCarrinho.data.valorTotaldoPedido > 0.0);
-            assert.isTrue(calculoCarrinho.data.produtos[0].valorTotalFrete > 0.0);
-
+            assert.isTrue(calculoCarrinho.data.valorFrete > 0);
+            assert.isTrue(calculoCarrinho.data.valorTotaldoPedido > 0);
+            assert.isTrue(calculoCarrinho.data.produtos[0].valorTotalFrete > 0);
             // preparacao do objeto que sera utilizado nos demais testes
             pedidoHelper = new DadosPedidoHelper();
             pedidoHelper.idSku = calculoCarrinho.data.produtos[0].idSku;
             pedidoHelper.precoVenda = calculoCarrinho.data.produtos[0].valorUnitario;
             pedidoHelper.valorFrete = calculoCarrinho.data.produtos[0].valorTotalFrete;
-        });
+        })
     });
 
-    it("2-Deveria retornar o Calculo do Carrinho para criacao do Pedido com cartão", function () {
-        this.timeout(10000);
+    it("2-Deveria retornar o Calculo do Carrinho para criacao do Pedido com cartão", async function () {
+        this.timeout(20000);
         //mount request object
         let pedidoCarrinho = new PedidoCarrinho();
         let produto = new Produtos();
@@ -151,26 +150,24 @@ describe("Testes de integracao da classe PedidoApi", () => {
         //console.log("Request:");
         //console.log(pedidoCarrinho);
 
-        return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho => {
-            if (flagExibeBody){
-                console.log("Response:");
-                console.log(calculoCarrinho);
-            }
-            assert.isNotNull(calculoCarrinho);
-            assert.isTrue(calculoCarrinho.data.valorFrete > 0.0);
-            assert.isTrue(calculoCarrinho.data.valorTotaldoPedido > 0.0);
-            assert.isTrue(calculoCarrinho.data.produtos[0].valorTotalFrete > 0.0);
-
-            // preparacao do objeto que sera utilizado nos demais testes
-            pedidoComCartaoHelper = new DadosPedidoHelper();
-            pedidoComCartaoHelper.idSku = calculoCarrinho.data.produtos[0].idSku;
-            pedidoComCartaoHelper.precoVenda = calculoCarrinho.data.produtos[0].valorUnitario;
-            pedidoComCartaoHelper.valorFrete = calculoCarrinho.data.produtos[0].valorTotalFrete;
-        });
+        const calculoCarrinho = await pedidoApi.postCalcularCarrinho(pedidoCarrinho);
+        if (flagExibeBody) {
+            console.log("Response:");
+            console.log(calculoCarrinho);
+        }
+        assert.isNotNull(calculoCarrinho);
+        assert.isTrue(calculoCarrinho.data.valorFrete > 0);
+        assert.isTrue(calculoCarrinho.data.valorTotaldoPedido > 0);
+        assert.isTrue(calculoCarrinho.data.produtos[0].valorTotalFrete > 0);
+        // preparacao do objeto que sera utilizado nos demais testes
+        pedidoComCartaoHelper = new DadosPedidoHelper();
+        pedidoComCartaoHelper.idSku = calculoCarrinho.data.produtos[0].idSku;
+        pedidoComCartaoHelper.precoVenda = calculoCarrinho.data.produtos[0].valorUnitario;
+        pedidoComCartaoHelper.valorFrete = calculoCarrinho.data.produtos[0].valorTotalFrete;
     });
 
     it("3-Deveria criar o pedido sem cartão", function () {
-        this.timeout(10000);
+        this.timeout(20000);
         // Produto
         let produto = new PedidoProdutoDto();
         produto.idLojista = ID_LOJISTA;
@@ -357,7 +354,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
 
 
     it("5-Deveria cancelar o pedido", function () {
-        this.timeout(10000);
+        this.timeout(20000);
         let dto = new ConfirmacaoReqDTO();
         dto.idCampanha = ID_CAMPANHA;
         dto.idPedidoParceiro = pedidoHelper.idPedidoParceiro;
@@ -380,7 +377,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
     });
 
     it("6-Deveria confirmar o pedido", function () {
-        this.timeout(10000);
+        this.timeout(20000);
         let dto = new ConfirmacaoReqDTO();
         dto.idCampanha = ID_CAMPANHA;
         dto.idPedidoParceiro = pedidoComCartaoHelper.idPedidoParceiro;
@@ -396,7 +393,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
     });
 
     it("7-Deveria retornar os dados do pedido do parceiro", function () {
-        this.timeout(10000);
+        this.timeout(20000);
         let queryParams = new Map();
         queryParams.set("request.idCompra", pedidoHelper.idPedido);
         queryParams.set("request.cnpj", CNPJ);
@@ -412,7 +409,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
         });
     });
 
-    it.only("8-Deveria retornar o PDF da nota fiscal", function () {
+    it("8-Deveria retornar o PDF da nota fiscal", function () {
         let pathParams = new Map();
 		pathParams.set("idCompra", "247473612");
 		pathParams.set("idCompraEntrega", "91712686");
@@ -439,7 +436,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
     });
 
     it("9-Deveria retornar erro ao tentar pegar os dados do pedido do parceiro sem passar o id compra", function () {
-        this.timeout(10000);
+        this.timeout(20000);
         let queryParams = new Map();
         queryParams.set("request.idCompra", pedidoHelper.idPedido);
         queryParams.set("request.cnpj", CNPJ);
@@ -456,7 +453,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
     });
 
     it("10-Deveria retornar erro ao tentar pegar os dados do pedido do parceiro sem passar os parametros", function () {
-        this.timeout(10000);
+        this.timeout(20000);
         let queryParams = new Map();
         queryParams.set("request.idCompra", pedidoHelper.idPedido);
         queryParams.set("request.cnpj", CNPJ);
@@ -474,7 +471,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
     });
 
     it("11-Deveria retornar erro ao tentar calcular carrinho sem passar o body", function () {
-        this.timeout(10000);
+        this.timeout(20000);
         return pedidoApi.postCalcularCarrinho(null).catch(error => {
             if (flagExibeBody){
                 console.log("Response:");
@@ -486,7 +483,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
     });
 
     it("12-Deveria retornar erro ao tentar confirmar o pedido sem passar o body", function () {
-        this.timeout(10000);
+        this.timeout(20000);
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(null, pedidoComCartaoHelper.idPedido).catch(error => {
             if (flagExibeBody){
                 console.log("Response:");
@@ -498,7 +495,7 @@ describe("Testes de integracao da classe PedidoApi", () => {
     });
 
     it("13-Deveria retornar erro ao tentar confirmar o pedido sem passar o id pedido", function () {
-        this.timeout(10000);
+        this.timeout(20000);
         let dto = new ConfirmacaoReqDTO();
         dto.idCampanha = ID_CAMPANHA;
         dto.idPedidoParceiro = pedidoComCartaoHelper.idPedidoParceiro;
@@ -532,6 +529,32 @@ describe("Testes de integracao da classe PedidoApi", () => {
             }
             assert.isNotNull(error);
             assert.equal(error.message, "Missing the required parameter 'pedido'");
+        });
+    });
+
+    it("16-Deveria retornar o XML da nota fiscal", function () {
+        let pathParams = new Map();
+		pathParams.set("idCompra", "247473612");
+		pathParams.set("idCompraEntrega", "91712686");
+		pathParams.set("formato", "xml");
+        return pedidoApi.getNotaFiscalPedido(pathParams).catch(nomeArquivo => {
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(nomeArquivo);
+            }
+
+            assert.isNotNull(nomeArquivo);   
+            
+            let existsFile = false;
+            fs.access('./'+nomeArquivo, undefined, (err) => {
+                if (err) {
+                    console.error("Erro verificando existencia do arquivo: " + err);
+                    existsFile = false;                    
+                } else {
+                    existsFile = true;
+                }
+            })
+			assert.isTrue(existsFile);     
         });
     });
 
