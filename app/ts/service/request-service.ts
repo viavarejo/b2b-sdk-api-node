@@ -38,6 +38,20 @@ export class RequestService {
         return await this.doGet(url.toString());
     }
 
+    public async getDownLoad(path: string): Promise<ArrayBuffer> {
+        // Esse mock foi utilizado quando o serviço estava fora
+        if (process.env.HOST_BANDEIRA_MOCK != null) {
+            this.basePath = process.env.HOST_BANDEIRA_MOCK;
+        }
+        const options = {
+            headers: {
+                'Authorization': this.token
+            }
+        };
+        let response = await fetch(this.basePath + path, options);
+        return await response.arrayBuffer();
+    }
+
     public async post(path : string, body: any) : Promise<any> {
         var url = new URL(this.basePath + path);
         return await this.doPost(url.toString(), body);

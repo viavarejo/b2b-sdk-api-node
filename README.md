@@ -20,7 +20,7 @@ Instalar:
 > `npm install -g typescript`
 
 - mocha
-> `npm i --global mocha`
+> `npm i --save-dev @types/mocha`
 
 - node-fetch
 > `npm install node-fetch`

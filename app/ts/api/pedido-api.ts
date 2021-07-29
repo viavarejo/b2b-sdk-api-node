@@ -7,6 +7,7 @@ import { ConfirmacaoDTO } from '../model/response/confirmacao-dto';
 import { CriacaoPedidoRequest } from '../model/request/criacao-pedido-request';
 import { CriacaoPedidoDTO } from '../model/response/criacao-pedido-dto';
 import { PedidoParceiroData } from '../model/response/pedido-parceiro-data';
+import * as fs  from 'fs';
 
 export class PedidoApi {
     private requestService: RequestService = new RequestService();
@@ -54,7 +55,7 @@ export class PedidoApi {
         return await this.requestService.patch(path, confirmacaoPedido);
     }
 
-    public async getNotaFiscalPedido(pathParams: Map<string, string>): Promise<string> {
+    public async getNotaFiscalPedido(pathParams: Map<string, string>): Promise<any> {
         // verify the required parameter
         if (pathParams == null) {
             throw new Error("Missing the required parameter 'pathParams'");
@@ -63,7 +64,53 @@ export class PedidoApi {
         let path: string = util.format("/pedidos/%s/entregas/%s/nfe/%s", pathParams.get("idCompra"),
             pathParams.get("idCompraEntrega"), pathParams.get("formato"));
 
-        return await this.requestService.get(path, pathParams);
+        return await this.requestService.getDownLoad(path).then(response =>{
+                let date = new Date();
+                let outFile: string;
+                if (pathParams.get("formato").toLowerCase() === "pdf") {
+                    outFile = "NF_" + date.getTime() + ".pdf";
+                } else {
+                    outFile = "NF_" + date.getTime() + ".xml";
+                }
+                console.log('arquivo ' + outFile );
+        
+                fs.writeFile(outFile, new Uint8Array(response), (err) => {
+                    if (err){
+                        console.error('Erro criando arquivo!');
+                        //return;
+                    } 
+                    console.log('O arquivo ' + outFile + ' foi salvo');
+                });
+                
+            });
+      
+      
+      
+      //   return  outFile;
+       
+
+/*
+        let data = "This is a file containing a collection of movies.";
+  
+        fs.writeFile("movies.txt", data,
+          {
+            encoding: "utf8",
+            flag: "w",
+            mode: 0o666
+          },
+          (err) => {
+            if (err)
+              console.log(err);
+            else {
+              console.log("File written successfully\n");
+              console.log("The written has the following contents:");
+              console.log(fs.readFileSync("movies.txt", "utf8"));
+            }
+        });
+        return "";
+*/
+
+
     }
 
     public async postCriarPedido(pedido: CriacaoPedidoRequest): Promise<CriacaoPedidoDTO> {

@@ -17,6 +17,7 @@ import { EnderecoCobrancaDto } from '../app/ts/model/request/endereco-cobranca-d
 import { ConfirmacaoReqDTO } from '../app/ts/model/request/confirmacao-req-dto';
 
 import { assert } from 'chai';
+import * as fs  from 'fs';
 
 /** CEP padrao dos testes */
 const CEP = "01525000";
@@ -77,6 +78,8 @@ let pedidoComCartaoHelper:DadosPedidoHelper;
 let pedidoApi:PedidoApi;
 let publicKey:string;
 
+let flagExibeBody = false;
+
 describe("Testes de integracao da classe PedidoApi", () => {
     // initial method
     before(function () {
@@ -113,8 +116,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
         //console.log(pedidoCarrinho);
 
         return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho => {
-            console.log("Response:");
-            console.log(calculoCarrinho);
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(calculoCarrinho);
+            }
             assert.isNotNull(calculoCarrinho);
             assert.isTrue(calculoCarrinho.data.valorFrete > 0.0);
             assert.isTrue(calculoCarrinho.data.valorTotaldoPedido > 0.0);
@@ -147,8 +152,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
         //console.log(pedidoCarrinho);
 
         return pedidoApi.postCalcularCarrinho(pedidoCarrinho).then(calculoCarrinho => {
-            console.log("Response:");
-            console.log(calculoCarrinho);
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(calculoCarrinho);
+            }
             assert.isNotNull(calculoCarrinho);
             assert.isTrue(calculoCarrinho.data.valorFrete > 0.0);
             assert.isTrue(calculoCarrinho.data.valorTotaldoPedido > 0.0);
@@ -215,8 +222,11 @@ describe("Testes de integracao da classe PedidoApi", () => {
         //console.log(pedido);
 
         return pedidoApi.postCriarPedido(pedido).then(criacaoPedidoDTO => {
-            console.log("Request:");
-            console.log(criacaoPedidoDTO);
+            if (flagExibeBody){
+                console.log("Request:");
+                console.log(criacaoPedidoDTO);
+            }
+            
             let expectedValue = pedidoHelper.getTotalPedido();
             assert.equal(criacaoPedidoDTO.data.valorTotalPedido, expectedValue);
 
@@ -332,8 +342,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
         pedido.valorTotalComplementarComJuros = 30.0;
 
         return pedidoApi.postCriarPedido(pedido).then(criacaoPedidoDTO => {
-            console.log("Response:");
-            console.log(criacaoPedidoDTO);
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(criacaoPedidoDTO);
+            }
             let valueExpected = pedidoComCartaoHelper.getTotalPedido();
             assert.equal(criacaoPedidoDTO.data.valorTotalPedido, valueExpected);
 
@@ -359,8 +371,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
         //console.log(pedidoHelper.idPedido);
 
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, pedidoHelper.idPedido).then(confirmacaoDto => {
-            console.log("Response:");
-            console.log(confirmacaoDto);
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(confirmacaoDto);
+            }
             assert.isTrue(confirmacaoDto.data.pedidoCancelado);
         });
     });
@@ -373,8 +387,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
         dto.confirmado = true;
 
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, pedidoComCartaoHelper.idPedido).then(confirmacaoDto => {
-            console.log("Response:");
-            console.log(confirmacaoDto);
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(confirmacaoDto);
+            }
             assert.isTrue(confirmacaoDto.data.pedidoConfirmado);
         });
     });
@@ -388,21 +404,37 @@ describe("Testes de integracao da classe PedidoApi", () => {
         queryParams.set("request.idPedidoParceiro", pedidoHelper.idPedidoParceiro);
 
         return pedidoApi.getDadosPedidoParceiro(pedidoHelper.idPedido, queryParams).then(pedido => {
-            console.log("Response:");
-            console.log(pedido);
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(pedido);
+            }
             assert.equal(pedido.data.pedido.codigoPedido, pedidoHelper.idPedido);
         });
     });
 
-    it("8-Deveria retornar o PDF da nota fiscal", function () {
+    it.only("8-Deveria retornar o PDF da nota fiscal", function () {
         let pathParams = new Map();
 		pathParams.set("idCompra", "247473612");
 		pathParams.set("idCompraEntrega", "91712686");
 		pathParams.set("formato", "PDF");
-        return pedidoApi.getNotaFiscalPedido(pathParams).catch(pedido => {
-            //console.log("Response:");
-            //console.log(pedido);
-            //assert.isNotNull(pedido);        
+        return pedidoApi.getNotaFiscalPedido(pathParams).catch(nomeArquivo => {
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(nomeArquivo);
+            }
+
+            assert.isNotNull(nomeArquivo);   
+            
+            let existsFile = false;
+            fs.access('./'+nomeArquivo, undefined, (err) => {
+                if (err) {
+                    console.error("Erro verificando existencia do arquivo: " + err);
+                    existsFile = false;                    
+                } else {
+                    existsFile = true;
+                }
+            })
+			assert.isTrue(existsFile);     
         });
     });
 
@@ -414,8 +446,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
         queryParams.set("request.idCampanha", ID_CAMPANHA);
         queryParams.set("request.idPedidoParceiro", pedidoHelper.idPedidoParceiro);
         return pedidoApi.getDadosPedidoParceiro(null, queryParams).catch(error => {
-            console.log("Response:");
-            console.log(error.message)
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(error.message)
+            }
             assert.isNotNull(error);
             assert.equal(error.message, "Missing the required parameter 'idCompra'");
         });
@@ -430,8 +464,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
         queryParams.set("request.idPedidoParceiro", pedidoHelper.idPedidoParceiro);
 
         return pedidoApi.getDadosPedidoParceiro(pedidoHelper.idPedido, null).catch(error => {
-            console.log("Response:");
-            console.log(error.message)
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(error.message)
+            }
             assert.isNotNull(error);
             assert.equal(error.message, "Missing the required parameter 'queryParams'");
         });
@@ -440,8 +476,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
     it("11-Deveria retornar erro ao tentar calcular carrinho sem passar o body", function () {
         this.timeout(10000);
         return pedidoApi.postCalcularCarrinho(null).catch(error => {
-            console.log("Response:");
-            console.log(error.message)
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(error.message)
+            }
             assert.isNotNull(error);
             assert.equal(error.message, "Missing the required parameter 'pedidosCarrinho' when calling postPedidosCarrinho");
         });
@@ -450,8 +488,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
     it("12-Deveria retornar erro ao tentar confirmar o pedido sem passar o body", function () {
         this.timeout(10000);
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(null, pedidoComCartaoHelper.idPedido).catch(error => {
-            console.log("Response:");
-            console.log(error.message)
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(error.message)
+            }
             assert.isNotNull(error);
             assert.equal(error.message, "Missing the required parameter 'confirmacaoPedido' when calling pathPedidosCancelamentoOrConfirmacao");
         });
@@ -464,8 +504,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
         dto.idPedidoParceiro = pedidoComCartaoHelper.idPedidoParceiro;
         dto.confirmado = true;
         return pedidoApi.patchPedidosCancelamentoOrConfirmacao(dto, null).catch(error => {
-            console.log("Response:");
-            console.log(error.message)
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(error.message)
+            }
             assert.isNotNull(error);
             assert.equal(error.message, "Missing the required parameter 'idCompra'");
         });
@@ -473,8 +515,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
 
     it("14-Deveria retornar erro o tentar download do PDF da nota fiscal sem passar parametros", function () {
         return pedidoApi.getNotaFiscalPedido(null).catch(error => {
-            console.log("Response:");
-            console.log(error.message)
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(error.message)
+            }
             assert.isNotNull(error);
             assert.equal(error.message, "Missing the required parameter 'pathParams'");
         });
@@ -482,8 +526,10 @@ describe("Testes de integracao da classe PedidoApi", () => {
 
     it("15-Deveria  retornar erro o tentar criar pedido sem body", function () {
         return pedidoApi.postCriarPedido(null).catch(error => {
-            console.log("Response:");
-            console.log(error.message)
+            if (flagExibeBody){
+                console.log("Response:");
+                console.log(error.message)
+            }
             assert.isNotNull(error);
             assert.equal(error.message, "Missing the required parameter 'pedido'");
         });
